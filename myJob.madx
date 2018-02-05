@@ -1,0 +1,29 @@
+// -----------------------------------------------------------
+/*  Eugenio Senes
+    JAI Course
+    Created 05.02.2018
+*/
+
+// User defined variables -- copied from the given macro
+nrj = 450.;//Beam energy
+emittance_norm = 2.5e-6;
+npart = 2.2e11;
+bunch_len=0.0755;
+
+//------------------------------------------------------------
+//calculations
+gamma_rel=nrj/pmass;
+epsx = emittance_norm /gamma_rel;
+epsy = emittance_norm /gamma_rel;
+
+/* call, file="opt_stren.str"; */
+/* call, file="magnets.ele"; */
+call, file="4DCell.seq";
+
+BEAM, PARTICLE=proton, ENERGY=nrj,EX=emittance_norm/gamma_rel, NPART=1.15E11, SIGE=4.5e-4*sqrt(450./NRJ), EX:=epsx, EY:=epsy, SIGT:=bunch_len;
+
+USE, SEQUENCE=4DCell;
+TWISS;
+PLOT , HAXIS=s, VAXIS1=betx,bety, VAXIS2=dx, colour=100;
+
+STOP;
