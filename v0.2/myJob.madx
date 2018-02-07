@@ -1,0 +1,105 @@
+// -----------------------------------------------------------
+/*  Eugenio Senes
+    JAI Course problem 5.2 a)
+    12.01.2018
+*/
+// User defined variables -- copied from the given macro
+nrj = 450.;//Beam energy
+emittance_norm = 2.5e-6;
+npart = 2.2e11;
+bunch_len=0.0755;
+
+//------------------------------------------------------------
+//calculations
+gamma_rel=nrj/pmass;
+epsx = emittance_norm /gamma_rel;
+epsy = emittance_norm /gamma_rel;
+
+
+call, file="cellSequence.seq";
+// call, file="./optics/opt_inj.str";
+
+BEAM, PARTICLE=proton, ENERGY=nrj,EX=emittance_norm/gamma_rel, NPART=1.15E11, SIGE=4.5e-4*sqrt(450./NRJ), EX:=epsx, EY:=epsy, SIGT:=bunch_len;
+
+// -----------------------------------------------------------
+/*  Initial twiss                                           */
+//------------------------------------------------------------
+USE, SEQUENCE = arcCell;
+TWISS, TABLE=twiss_tab, FILE="twiss0.out";
+PLOT , TABLE=twiss_tab, HAXIS=s, VAXIS1=betx,bety, VAXIS2=dx, colour=100, NOVERSION=true, TITLE="Phi=90 deg";
+
+// -----------------------------------------------------------
+/*  Aperture job                                            */
+//------------------------------------------------------------
+call, file="./aperture/aperture.b1.madx";
+call, file="./aperture/aperture.b1.tol.madx";
+
+REAL CONST apbbeat =1.05;
+REAL CONST halor=6;
+REAL CONST halox=6;
+REAL CONST haloy=6;
+
+REAL CONST COmax=0.002;
+REAL CONST dPmax=8.6e-4;
+REAL CONST Dxpar=0.14;
+REAL CONST Dypar=0.14;
+
+USE, SEQUENCE = arcCell;
+SELECT, FLAG=twiss, clear;
+SELECT, FLAG=twiss, COLUMN=name,s,l,angle,k1l,k2l,hkick,vkick,kick,betx,bety,dx,dy,x,y;
+TWISS, FILE = temp/twiss_arcNARC1NARC2BIM.tfs;
+
+SELECT, FLAG = aperture,clear;
+SELECT, FLAG = aperture, COLUMN = name,s,betx,bety,dx,dy,x,y,n1,apertype,Rtol,xtol,ytol;
+APERTURE, HALO={6,halor,halox,haloy},BBEAT=apbbeat, DPARX=Dxpar, DPARY=Dypar, COR=COmax, DP=dPmax, SPEC=SPECIF,INTERVAL=1.0,
+         FILE=temp/ap_arcNARC1NARC2BIM.tfs;
+
+plot, TABLE=aperture, haxis=s, vmin=0, vmax=300,20, vaxis1=betx,bety, vaxis2=n1, colour=100, NOVERSION=true, TITLE="Phi=90 deg";
+
+
+
+// -----------------------------------------------------------
+/*  Match the phase advance                                 */
+//------------------------------------------------------------
+MATCH, SEQUENCE=arcCell;
+  GLOBAL, SEQUENCE=arcCell, Q1=0.1667;
+  GLOBAL, SEQUENCE=arcCell, Q2=0.2049339333;
+  VARY, name=kq12.r1b1, STEP=1.0E-5;
+  VARY, name=kqf, STEP=0.00001;
+  LMDIF, CALLS=1e5, TOLERANCE=1.0e-21;
+ENDMATCH;
+
+TWISS, TABLE=twiss_tab, FILE="twiss1.out";
+PLOT , TABLE=twiss_tab, HAXIS=s, VAXIS1=betx,bety, VAXIS2=dx, colour=100, NOVERSION=true, TITLE="Phi=60 deg";
+
+// -----------------------------------------------------------
+/*  Aperture job                                            */
+//------------------------------------------------------------
+call, file="./aperture/aperture.b1.madx";
+call, file="./aperture/aperture.b1.tol.madx";
+
+REAL CONST apbbeat =1.05;
+REAL CONST halor=6;
+REAL CONST halox=6;
+REAL CONST haloy=6;
+
+REAL CONST COmax=0.002;
+REAL CONST dPmax=8.6e-4;
+REAL CONST Dxpar=0.14;
+REAL CONST Dypar=0.14;
+
+USE, SEQUENCE = arcCell;
+SELECT, FLAG=twiss, clear;
+SELECT, FLAG=twiss, COLUMN=name,s,l,angle,k1l,k2l,hkick,vkick,kick,betx,bety,dx,dy,x,y;
+TWISS, FILE = temp/twiss_arcNARC1NARC2BIM.tfs;
+
+SELECT, FLAG = aperture,clear;
+SELECT, FLAG = aperture, COLUMN = name,s,betx,bety,dx,dy,x,y,n1,apertype,Rtol,xtol,ytol;
+APERTURE, HALO={6,halor,halox,haloy},BBEAT=apbbeat, DPARX=Dxpar, DPARY=Dypar, COR=COmax, DP=dPmax, SPEC=SPECIF,INTERVAL=1.0,
+         FILE=temp/ap_arcNARC1NARC2BIM.tfs;
+
+plot, TABLE=aperture, haxis=s, vmin=0, vmax=300,20, vaxis1=betx,bety, vaxis2=n1, colour=100, NOVERSION=true, TITLE="Phi=60 deg";
+
+
+
+STOP;

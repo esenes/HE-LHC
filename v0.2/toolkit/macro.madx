@@ -1,0 +1,2040 @@
+
+match_crossing_angle(MXANG, MPSEP): macro={
+
+    seqedit,sequence=mynewhelhcb1;flatten;cycle,start=IP3;endedit;
+    
+    nrjaux= beam%mynewhelhcb1->energy;
+    
+    Xang = MXANG;
+    Psep = MPSEP;
+    
+
+    exec,resetXscheme(1);
+    exec,resetXscheme(5);
+    exec,cableXscheme(1);
+    exec,cableXscheme(5);
+    exec,matchXscheme(1,x,s,0);
+    exec,matchXscheme(5,s,x,90);
+    exec,matchXscheme(1,s,x,90);
+    exec,matchXscheme(5,x,s,0);
+    //exec,valueXscheme(1);
+    //exec,valueXscheme(5);
+    value,tarir1xing90,tarir1xing0,tarir5xing90,tarir5xing0;
+    
+    
+    seqedit,sequence=mynewhelhcb1;flatten;cycle,start=IP1;endedit;
+}
+
+
+resetXscheme(nIR) : macro ={
+ACBXH1.LnIR=0;ACBXH1.LnIRx=0;ACBXH1.LnIRs=0;
+ACBXH1.RnIR=0;ACBXH1.RnIRx=0;ACBXH1.RnIRs=0;
+ACBXV1.LnIR=0;ACBXV1.LnIRx=0;ACBXV1.LnIRs=0;
+ACBXV1.RnIR=0;ACBXV1.RnIRx=0;ACBXV1.RnIRs=0;
+
+ACBXH2.LnIR=0;ACBXH2.LnIRx=0;ACBXH2.LnIRs=0;
+ACBXH2.RnIR=0;ACBXH2.RnIRx=0;ACBXH2.RnIRs=0;
+ACBXV2.LnIR=0;ACBXV2.LnIRx=0;ACBXV2.LnIRs=0;
+ACBXV2.RnIR=0;ACBXV2.RnIRx=0;ACBXV2.RnIRs=0;
+
+ACBXH3.LnIR=0;ACBXH3.LnIRx=0;ACBXH3.LnIRs=0;
+ACBXH3.RnIR=0;ACBXH3.RnIRx=0;ACBXH3.RnIRs=0;
+ACBXV3.LnIR=0;ACBXV3.LnIRx=0;ACBXV3.LnIRs=0;
+ACBXV3.RnIR=0;ACBXV3.RnIRx=0;ACBXV3.RnIRs=0;
+
+ACBYHS4.LnIRB1=0;ACBYHS4.LnIRB1x=0;ACBYHS4.LnIRB1s=0;
+ACBYHS4.RnIRB1=0;ACBYHS4.RnIRB1x=0;ACBYHS4.RnIRB1s=0;
+ACBCH6.LnIRB1 =0;ACBCH6.LnIRB1x =0;ACBCH6.LnIRB1s =0;
+ACBCH5.RnIRB1 =0;ACBCH5.RnIRB1x =0;ACBCH5.RnIRB1s =0;
+
+ACBYVS4.LnIRB1=0;ACBYVS4.LnIRB1x=0;ACBYVS4.LnIRB1s=0;
+ACBYVS4.RnIRB1=0;ACBYVS4.RnIRB1x=0;ACBYVS4.RnIRB1s=0;
+ACBCV5.LnIRB1 =0;ACBCV5.LnIRB1x =0;ACBCV5.LnIRB1s =0;
+ACBCV6.RnIRB1 =0;ACBCV6.RnIRB1x =0;ACBCV6.RnIRB1s =0;
+
+ACBYHS4.LnIRB2=0;ACBYHS4.LnIRB2x=0;ACBYHS4.LnIRB2s=0;
+ACBYHS4.RnIRB2=0;ACBYHS4.RnIRB2x=0;ACBYHS4.RnIRB2s=0;
+ACBCH5.LnIRB2 =0;ACBCH5.LnIRB2x =0;ACBCH5.LnIRB2s =0;
+ACBCH6.RnIRB2 =0;ACBCH6.RnIRB2x =0;ACBCH6.RnIRB2s =0;
+
+ACBYVS4.LnIRB2=0;ACBYVS4.LnIRB2x=0;ACBYVS4.LnIRB2s=0;
+ACBYVS4.RnIRB2=0;ACBYVS4.RnIRB2x=0;ACBYVS4.RnIRB2s=0;
+ACBCV6.LnIRB2 =0;ACBCV6.LnIRB2x =0;ACBCV6.LnIRB2s =0;
+ACBCV5.RnIRB2 =0;ACBCV5.RnIRB2x =0;ACBCV5.RnIRB2s =0;
+
+acbyybH4.LnIRB1=0;acbyybH4.LnIRB1x=0;acbyybH4.LnIRB1s=0;
+acbyybH4.RnIRB1=0;acbyybH4.RnIRB1x=0;acbyybH4.RnIRB1s=0;
+acbyybV4.LnIRB1=0;acbyybV4.LnIRB1x=0;acbyybV4.LnIRB1s=0;
+acbyybV4.RnIRB1=0;acbyybV4.RnIRB1x=0;acbyybV4.RnIRB1s=0;
+acbyybH4.LnIRB2=0;acbyybH4.LnIRB2x=0;acbyybH4.LnIRB2s=0;
+acbyybH4.RnIRB2=0;acbyybH4.RnIRB2x=0;acbyybH4.RnIRB2s=0;
+acbyybV4.LnIRB2=0;acbyybV4.LnIRB2x=0;acbyybV4.LnIRB2s=0;
+acbyybV4.RnIRB2=0;acbyybV4.RnIRB2x=0;acbyybV4.RnIRB2s=0;
+
+};
+
+cableXscheme(IRN): macro={
+xsinirIRN:=sin(pi/180*phi_irIRN);
+xcosirIRN:=cos(pi/180*phi_irIRN);
+
+acbxh1.lIRN   :=acbxh1.lIRNx   *on_xIRN*xcosirIRN +
+                acbxh1.lIRNs   *on_sepIRN*xsinirIRN;
+acbxh1.rIRN   :=acbxh1.rIRNx   *on_xIRN*xcosirIRN +
+                acbxh1.rIRNs   *on_sepIRN*xsinirIRN;
+acbxv1.lIRN   :=acbxv1.lIRNx   *on_xIRN*xsinirIRN +
+                acbxv1.lIRNs   *on_sepIRN*xcosirIRN;
+acbxv1.rIRN   :=acbxv1.rIRNx   *on_xIRN*xsinirIRN +
+                acbxv1.rIRNs   *on_sepIRN*xcosirIRN;
+acbxh2.lIRN   :=acbxh2.lIRNx   *on_xIRN*xcosirIRN +
+                acbxh2.lIRNs   *on_sepIRN*xsinirIRN;
+acbxh2.rIRN   :=acbxh2.rIRNx   *on_xIRN*xcosirIRN +
+                acbxh2.rIRNs   *on_sepIRN*xsinirIRN;
+acbxv2.lIRN   :=acbxv2.lIRNx   *on_xIRN*xsinirIRN +
+                acbxv2.lIRNs   *on_sepIRN*xcosirIRN;
+acbxv2.rIRN   :=acbxv2.rIRNx   *on_xIRN*xsinirIRN +
+                acbxv2.rIRNs   *on_sepIRN*xcosirIRN;
+acbxh3.lIRN   :=acbxh3.lIRNx   *on_xIRN*xcosirIRN +
+                acbxh3.lIRNs   *on_sepIRN*xsinirIRN;
+acbxh3.rIRN   :=acbxh3.rIRNx   *on_xIRN*xcosirIRN +
+                acbxh3.rIRNs   *on_sepIRN*xsinirIRN;
+acbxv3.lIRN   :=acbxv3.lIRNx   *on_xIRN*xsinirIRN +
+                acbxv3.lIRNs   *on_sepIRN*xcosirIRN;
+acbxv3.rIRN   :=acbxv3.rIRNx   *on_xIRN*xsinirIRN +
+                acbxv3.rIRNs   *on_sepIRN*xcosirIRN;
+
+acbyybv4.lIRNb1:=acbyybv4.lIRNb1x*on_xIRN*xsinirIRN +
+                 acbyybv4.lIRNb1s*on_sepIRN*xcosirIRN;
+acbyybv4.rIRNb1:=acbyybv4.rIRNb1x*on_xIRN*xsinirIRN +
+                 acbyybv4.rIRNb1s*on_sepIRN*xcosirIRN;
+acbyybh4.lIRNb1:=acbyybh4.lIRNb1x*on_xIRN*xcosirIRN +
+                 acbyybh4.lIRNb1s*on_sepIRN*xsinirIRN;
+acbyybh4.rIRNb1:=acbyybh4.rIRNb1x*on_xIRN*xcosirIRN +
+                 acbyybh4.rIRNb1s*on_sepIRN*xsinirIRN;
+acbyybv4.lIRNb1:=acbyybv4.lIRNb1x*on_xIRN*xsinirIRN +
+                 acbyybv4.lIRNb1s*on_sepIRN*xcosirIRN;
+acbyybv4.rIRNb1:=acbyybv4.rIRNb1x*on_xIRN*xsinirIRN +
+                 acbyybv4.rIRNb1s*on_sepIRN*xcosirIRN;
+acbyybh4.lIRNb1:=acbyybh4.lIRNb1x*on_xIRN*xcosirIRN +
+                 acbyybh4.lIRNb1s*on_sepIRN*xsinirIRN;
+acbyybh4.rIRNb1:=acbyybh4.rIRNb1x*on_xIRN*xcosirIRN +
+                 acbyybh4.rIRNb1s*on_sepIRN*xsinirIRN;
+
+acbyybv4.lIRNb2:=acbyybv4.lIRNb2x*on_xIRN*xsinirIRN +
+                 acbyybv4.lIRNb2s*on_sepIRN*xcosirIRN;
+acbyybv4.rIRNb2:=acbyybv4.rIRNb2x*on_xIRN*xsinirIRN +
+                 acbyybv4.rIRNb2s*on_sepIRN*xcosirIRN;
+acbyybh4.lIRNb2:=acbyybh4.lIRNb2x*on_xIRN*xcosirIRN +
+                 acbyybh4.lIRNb2s*on_sepIRN*xsinirIRN;
+acbyybh4.rIRNb2:=acbyybh4.rIRNb2x*on_xIRN*xcosirIRN +
+                 acbyybh4.rIRNb2s*on_sepIRN*xsinirIRN;
+acbyybv4.lIRNb2:=acbyybv4.lIRNb2x*on_xIRN*xsinirIRN +
+                 acbyybv4.lIRNb2s*on_sepIRN*xcosirIRN;
+acbyybv4.rIRNb2:=acbyybv4.rIRNb2x*on_xIRN*xsinirIRN +
+                 acbyybv4.rIRNb2s*on_sepIRN*xcosirIRN;
+acbyybh4.lIRNb2:=acbyybh4.lIRNb2x*on_xIRN*xcosirIRN +
+                 acbyybh4.lIRNb2s*on_sepIRN*xsinirIRN;
+acbyybh4.rIRNb2:=acbyybh4.rIRNb2x*on_xIRN*xcosirIRN +
+                 acbyybh4.rIRNb2s*on_sepIRN*xsinirIRN;
+};
+
+
+matchXscheme(IRN,VAR1,VAR2,VPHI): macro={
+  auxon_xIRN  =on_xIRN  ;
+  auxon_sepIRN=on_sepIRN;
+  auxphi_IRIRN=phi_IRIRN;
+  on_xIRN=1;
+  on_sepIRN=1;
+  phi_IRIRN=VPHI;
+  Use, period= MYNEWHELHCB1,RANGE=S.DS.LIRN.B1/E.DS.RIRN.B1;
+  
+  match, sequence=MYNEWHELHCB1 beta0= sb.IP.5.B1,
+                               x = 0.0, px = 0.0, y = 0.0, py = 0.0;
+  constraint, sequence=mynewhelhcb1,range=IPIRN, x  =  Psep*xsinirIRN,
+                                          y  =  Psep*xcosirIRN,
+                                          py =  Xang*xsinirIRN,
+                                          px =  Xang*xcosirIRN;
+
+  constraint, sequence=mynewhelhcb1,range=E.DS.RIRN.B1,x = 0.0, px = 0.0;
+  constraint, sequence=mynewhelhcb1,range=E.DS.RIRN.B1,y = 0.0, py = 0.0;
+
+  vary, name=acbxh3.lIRNVAR1;
+  vary, name=acbxh2.lIRNVAR1;
+  vary, name=acbxh1.lIRNVAR1;
+  vary, name=acbxh3.rIRNVAR1;
+  vary, name=acbxh2.rIRNVAR1;
+  vary, name=acbxh1.rIRNVAR1;
+  vary, name=acbyybh4.lIRNb1VAR1;
+  vary, name=acbyybh4.lIRNb2VAR1;
+  vary, name=acbyybh4.rIRNb1VAR1;
+  vary, name=acbyybh4.rIRNb2VAR1;
+  vary, name=acbxv3.lIRNVAR2;
+  vary, name=acbxv2.lIRNVAR2;
+  vary, name=acbxv1.lIRNVAR2;
+  vary, name=acbxv3.rIRNVAR2;
+  vary, name=acbxv2.rIRNVAR2;
+  vary, name=acbxv1.rIRNVAR2;
+  vary, name=acbyybv4.lIRNb1VAR2;
+  vary, name=acbyybv4.lIRNb2VAR2;
+  vary, name=acbyybv4.rIRNb1VAR2;
+  vary, name=acbyybv4.rIRNb2VAR2;
+  if (acbyybv4.rIRNb1VAR2==0){simplex,calls=200;};
+  jacobian, calls = 10, tolerance=1.E-30,bisec=3;
+  endmatch;
+  tarirIRNxingVPHI=tar;
+  on_xIRN  =auxon_xIRN  ;
+  on_sepIRN=auxon_sepIRN;
+  phi_IRIRN=auxphi_IRIRN;
+};
+
+// -----------------------------------------------------------
+// macro for rematching IR2
+
+rematch_ir2: macro = {
+	
+	SEQEDIT, SEQUENCE = mynewhelhcb1;
+	FLATTEN;
+	EXTRACT, SEQUENCE = mynewhelhcb1, FROM= IP2 , TO= E.DS.R2.B1 , NEWNAME = IR2.R.B1;
+	EXTRACT, SEQUENCE = mynewhelhcb1, FROM= S.DS.L2.B1 , TO= IP2 , NEWNAME = IR2.L.B1;
+	FLATTEN;
+	ENDEDIT;
+	
+	Fieldmax = 400;
+    maxk = Fieldmax*299792458/(BEAM->ENERGY*1000000000);
+	
+	
+	USE, SEQUENCE = IR2.L.B1;
+	MATCH, SEQUENCE = IR2.L.B1 , BETA0 = sb.S.DS.L.2.B1, MUX=0, MUY=0;
+	    
+	    VARY, NAME = kqt13.l2b1;
+	    VARY, NAME = kqt12.l2b1;
+	    VARY, NAME = kqtl11.l2b1;
+	    	    
+	    VARY, NAME = kq13.l2b1;
+	    VARY, NAME = kq12.l2b1;
+	    VARY, NAME = kq11.l2b1;
+	    
+	    VARY, NAME = kq10.l2b1;
+	    VARY, NAME = kq9.l2b1;
+	    VARY, NAME = kq8.l2b1;
+	    
+	    VARY, NAME = kq7.l2b1;
+	    VARY, NAME = kq6.l2b1;
+	    VARY, NAME = kq5.l2b1;
+	    VARY, NAME = kq4.l2b1;
+	    
+	    //VARY, NAME = ktqx2.l2;
+	    //VARY, NAME = ktqx1.l2;
+	    //VARY, NAME = kqx.l2;
+	    
+	    
+	    
+	    
+	    CONSTRAINT, SEQUENCE = IR2.L.B1, RANGE = IP2 , BETX = sb.IP.2.B1->BETX , BETY = sb.IP.2.B1->BETY;
+	    CONSTRAINT, SEQUENCE = IR2.L.B1, RANGE = IP2 , ALFX =  sb.IP.2.B1->ALFX , ALFY =  sb.IP.2.B1->ALFY;
+	    CONSTRAINT, SEQUENCE = IR2.L.B1, RANGE = IP2 , DX =  sb.IP.2.B1->DX , DPX = sb.IP.2.B1->DPX;
+	    CONSTRAINT, SEQUENCE = IR2.L.B1, RANGE = IP2 , MUX = 1.180157635 , MUY = 1.130911281 ;
+	     
+	    
+	    LMDIF, CALLS = 20000, TOLERANCE = 1E-22;
+	    JACOBIAN, CALLS = 2000 , TOLERANCE = 1E-22 , STRATEGY = 3;
+	    
+    ENDMATCH;
+    IF (tar > 1E-21) {quit;}// Error in IR2
+    
+    USE, SEQUENCE = IR2.R.B1;
+    MATCH, SEQUENCE = IR2.R.B1 , BETA0 = sb.IP.2.B1, MUX=0, MUY=0;
+	
+	    //VARY, NAME = kqx.r2;
+	    //VARY, NAME = ktqx1.r2;
+	    //VARY, NAME = ktqx2.r2;
+	    
+	    VARY, NAME = kq4.r2b1;
+	    VARY, NAME = kq5.r2b1;
+	    VARY, NAME = kq6.r2b1;
+	    VARY, NAME = kq7.r2b1;
+	    
+	    VARY, NAME = kq8.r2b1;
+	    VARY, NAME = kq9.r2b1;
+	    VARY, NAME = kq10.r2b1;
+	    
+	    VARY, NAME = kq11.r2b1;
+	    VARY, NAME = kq12.r2b1;
+	    VARY, NAME = kq13.r2b1;
+	    
+	    VARY, NAME = kqtl11.r2b1;
+	    VARY, NAME = kqt12.r2b1;
+	    VARY, NAME = kqt13.r2b1;
+	    
+	    
+	    CONSTRAINT, SEQUENCE = IR2.R.B1, RANGE = E.DS.R2.B1 , BETX = sb.E.DS.R.2.B1->BETX , BETY = sb.E.DS.R.2.B1->BETY;
+	    CONSTRAINT, SEQUENCE = IR2.R.B1, RANGE = E.DS.R2.B1 , ALFX =sb.E.DS.R.2.B1->ALFX , ALFY =sb.E.DS.R.2.B1->ALFY;
+	    CONSTRAINT, SEQUENCE = IR2.R.B1, RANGE = E.DS.R2.B1 , DX = sb.E.DS.R.2.B1->DX , DPX =sb.E.DS.R.2.B1->DPX;
+	    CONSTRAINT, SEQUENCE = IR2.R.B1, RANGE = E.DS.R2.B1 , MUX = 1.410344784 , MUY = 1.169261651 ;
+	    
+	    
+	    LMDIF, CALLS = 20000, TOLERANCE = 1E-22;
+	    JACOBIAN, CALLS = 2000 , TOLERANCE = 1E-22 , STRATEGY = 3;
+	    
+    ENDMATCH;
+    IF (tar > 1E-21) {quit;}// Error in IR2
+
+}
+
+
+// -----------------------------------------------------------
+// macro for rematching IR3
+
+rematch_ir3: macro = {
+	
+	SEQEDIT, SEQUENCE = mynewhelhcb1;
+	FLATTEN;
+	EXTRACT, SEQUENCE = mynewhelhcb1, FROM= S.DS.L3.B1 , TO= E.DS.R3.B1 , NEWNAME = IR3.B1;
+	FLATTEN;
+	ENDEDIT;
+	
+	Fieldmax = 400;
+    maxk = Fieldmax*299792458/(BEAM->ENERGY*1000000000);
+	
+	
+	USE, SEQUENCE = IR3.B1;
+	MATCH, SEQUENCE = IR3.B1, BETA0 = sb.S.DS.L.3.B1, MUX=0, MUY=0;
+	
+	    	    
+	    VARY, NAME = kq13.l3b1;
+	    VARY, NAME = kq12.l3b1;
+	    VARY, NAME = kq11.l3b1;
+	    
+	    VARY, NAME = kq10.l3b1;
+	    VARY, NAME = kq9.l3b1;
+	    VARY, NAME = kq8.l3b1;
+	    
+	    VARY, NAME = kqtl7.l3b1;
+	    VARY, NAME = kq6.l3b1;
+	    VARY, NAME = kq5.lr3;
+	    VARY, NAME = kq4.lr3;
+	    
+	    
+	    VARY, NAME = kq6.r3b1;
+	    VARY, NAME = kqtl7.r3b1;
+	    
+	    VARY, NAME = kqtl8.r3b1;
+	    VARY, NAME = kqtl9.r3b1;
+	    
+	    VARY, NAME = kq8.r3b1;
+	    VARY, NAME = kq9.r3b1;
+	    VARY, NAME = kq10.r3b1;
+	    
+	    VARY, NAME = kq11.r3b1;
+	    VARY, NAME = kq12.r3b1;
+	    VARY, NAME = kq13.r3b1;	    
+	    
+
+	   
+	    
+	    
+	    CONSTRAINT, SEQUENCE = IR3.B1, RANGE = E.DS.R3.B1 , BETX = sb.E.DS.R.3.B1->BETX , BETY = sb.E.DS.R.3.B1->BETY;
+	    CONSTRAINT, SEQUENCE = IR3.B1, RANGE = E.DS.R3.B1 , ALFX = sb.E.DS.R.3.B1->ALFX , ALFY = sb.E.DS.R.3.B1->ALFY;
+	    CONSTRAINT, SEQUENCE = IR3.B1, RANGE = E.DS.R3.B1 , DX = sb.E.DS.R.3.B1->DX , DPX = sb.E.DS.R.3.B1->DPX;
+	    CONSTRAINT, SEQUENCE = IR3.B1, RANGE = E.DS.R3.B1 , MUX = 2.001958655 , MUY = 2.045975655 ;
+	    
+	    
+	    LMDIF, CALLS = 20000, TOLERANCE = 1E-22;
+	    JACOBIAN, CALLS = 2000 , TOLERANCE = 1E-22 , STRATEGY = 3;
+	    
+    ENDMATCH;
+    IF (tar > 1E-21) {quit;}// Error in IR3
+
+}
+
+
+// -----------------------------------------------------------
+// macro for rematching IR4
+
+rematch_ir4(DMUX4,DMUY4): macro = {
+	
+	SEQEDIT, SEQUENCE = mynewhelhcb1;
+	FLATTEN;
+	EXTRACT, SEQUENCE = mynewhelhcb1, FROM= S.DS.L4.B1 , TO= E.DS.R4.B1 , NEWNAME = IR4.B1;
+	FLATTEN;
+	ENDEDIT;
+	
+	Fieldmax = 400;
+    maxk = Fieldmax*299792458/(BEAM->ENERGY*1000000000);
+    
+    ip: BETA0,
+betx   =        260.3633986,
+alfx   =       -0.3526129149,
+bety   =        212.0401041,
+alfy   =      0.4437767463,
+dx   =    -2.298355992e-09,
+dpx   =   -1.102950643e-10;
+
+    Value, DMUX4, DMUY4;
+
+
+	
+	USE, SEQUENCE = IR4.B1;
+	MATCH, SEQUENCE = IR4.B1, BETA0 = sb.S.DS.L.4.B1, MUX =0, MUY =0;
+	
+	 
+	    VARY, NAME = kq13.l4b1, lower = 0, upper =   maxk;
+	    VARY, NAME = kq12.l4b1, lower = - maxk, upper = 0;	    
+	    VARY, NAME = kq11.l4b1, lower = 0, upper =   maxk;
+	    
+	    VARY, NAME = kq10.l4b1, lower = - maxk, upper = 0;
+	    VARY, NAME = kq9.l4b1, lower = 0, upper =   maxk;	    
+	    VARY, NAME = kq8.l4b1, lower = - maxk, upper = 0;
+	    
+	    VARY, NAME = kq7.l4b1, lower = 0, upper =   maxk;
+	    VARY, NAME = kq6.l4b1, lower = - maxk, upper = 0;
+	    VARY, NAME = kq5.l4b1, lower = 0, upper =   maxk;
+		
+	    VARY, NAME = kq4.l4b1, lower = - maxk, upper = 0;
+	    
+	    
+	    VARY, NAME = kq4.r4b1, lower = 0, upper =   maxk;
+		
+	    VARY, NAME = kq5.r4b1, lower = - maxk, upper = 0;
+	    VARY, NAME = kq6.r4b1, lower = 0, upper =   maxk;
+	    VARY, NAME = kq7.r4b1, lower = - maxk, upper = 0;
+	    
+	    VARY, NAME = kq8.r4b1, lower = 0, upper =   maxk;
+	    VARY, NAME = kq9.r4b1, lower = - maxk, upper = 0;
+	    VARY, NAME = kq10.r4b1, lower = 0, upper =   maxk;
+	    
+	    VARY, NAME = kq11.r4b1, lower = - maxk, upper = 0;
+	    VARY, NAME = kq12.r4b1, lower = 0, upper =   maxk;
+	    VARY, NAME = kq13.r4b1, lower = - maxk, upper = 0;	    
+
+	    CONSTRAINT, SEQUENCE = IR4.B1, RANGE= MQML.7L4.B1 , BETX < 600 , BETY  < 600;
+	    CONSTRAINT, SEQUENCE = IR4.B1, RANGE= MQYL.6L4.B1 , BETX < 600 , BETY  < 600;
+	    CONSTRAINT, SEQUENCE = IR4.B1, RANGE= MQYL.5L4.B1 , BETX < 600 , BETY  < 600;
+	    CONSTRAINT, SEQUENCE = IR4.B1, RANGE= MQYL.4L4.B1 , BETX < 600 , BETY  < 600;
+	    CONSTRAINT, SEQUENCE = IR4.B1, RANGE= IP4 ,         BETX=ip->BETX, BETY=ip->BETY, ALFX=ip->ALFX, ALFY=ip->ALFY, DX=ip->DX, DPX=ip->DPX;
+	    CONSTRAINT, SEQUENCE = IR4.B1, RANGE= MQYL.4R4.B1 , BETX < 600 , BETY  < 600;
+	    CONSTRAINT, SEQUENCE = IR4.B1, RANGE= MQYL.5R4.B1 , BETX < 600 , BETY  < 600;
+	    CONSTRAINT, SEQUENCE = IR4.B1, RANGE= MQYL.6R4.B1 , BETX < 600 , BETY  < 600;
+	    CONSTRAINT, SEQUENCE = IR4.B1, RANGE= MQML.7R4.B1 , BETX < 600 , BETY  < 600;
+	    
+	    CONSTRAINT, SEQUENCE = IR4.B1, RANGE= MQ.8L4.B1 , BETX < 275 , BETY  < 275;
+	    CONSTRAINT, SEQUENCE = IR4.B1, RANGE= MQ.9L4.B1 , BETX < 275 , BETY  < 275;
+	    CONSTRAINT, SEQUENCE = IR4.B1, RANGE= MQ.10L4.B1 , BETX < 275 , BETY  < 275;
+	    CONSTRAINT, SEQUENCE = IR4.B1, RANGE= MQ.11L4.B1 , BETX < 275 , BETY  < 275;
+	    CONSTRAINT, SEQUENCE = IR4.B1, RANGE= MQ.12L4.B1 , BETX < 275 , BETY  < 275;
+	    CONSTRAINT, SEQUENCE = IR4.B1, RANGE= MQ.13L4.B1 , BETX < 275 , BETY  < 275; 
+	    CONSTRAINT, SEQUENCE = IR4.B1, RANGE= MQ.8R4.B1 , BETX < 275 , BETY  < 275;
+	    CONSTRAINT, SEQUENCE = IR4.B1, RANGE= MQ.9R4.B1 , BETX < 275 , BETY  < 275;
+	    CONSTRAINT, SEQUENCE = IR4.B1, RANGE= MQ.10R4.B1 , BETX < 275 , BETY  < 275;
+	    CONSTRAINT, SEQUENCE = IR4.B1, RANGE= MQ.11R4.B1 , BETX < 275 , BETY  < 275;
+	    CONSTRAINT, SEQUENCE = IR4.B1, RANGE= MQ.12R4.B1 , BETX < 275 , BETY  < 275;
+	    CONSTRAINT, SEQUENCE = IR4.B1, RANGE= MQ.13R4.B1 , BETX < 275 , BETY  < 275;
+	    
+	    
+	    
+	    
+	    CONSTRAINT, SEQUENCE = IR4.B1, RANGE = E.DS.R4.B1 , BETX = sb.E.DS.R.4.B1->BETX , BETY = sb.E.DS.R.4.B1->BETY;
+	    CONSTRAINT, SEQUENCE = IR4.B1, RANGE = E.DS.R4.B1 , ALFX =sb.E.DS.R.4.B1->ALFX , ALFY =sb.E.DS.R.4.B1->ALFY;
+	    CONSTRAINT, SEQUENCE = IR4.B1, RANGE = E.DS.R4.B1 , DX = sb.E.DS.R.4.B1->DX , DPX =sb.E.DS.R.4.B1->DPX;
+	    CONSTRAINT, SEQUENCE = IR4.B1, RANGE = E.DS.R4.B1 , MUX =2.10525390-DMUX4 ;
+	    CONSTRAINT, SEQUENCE = IR4.B1, RANGE = E.DS.R4.B1 , MUY =1.96507351-DMUY4 ;
+	    
+	    
+	    LMDIF, CALLS = 20000, TOLERANCE = 1E-22;
+	    JACOBIAN, CALLS = 2000 , TOLERANCE = 1E-22;
+		LMDIF, CALLS = 20000, TOLERANCE = 1E-22;
+	    
+    ENDMATCH;
+	
+	USE, SEQUENCE = IR4.B1;
+    TWISS, BETA0 = sb.S.DS.L.4.B1, MUX = 0, MUY = 0;//, FILE='IR4.tfs';
+	//PLOT, HAXIS = S, VAXIS1=BETX,BETY, VAXIS2=DX , COLOUR =100, NOVERSION=True;
+	//value, kq10.l4b1, kq9.l4b1, kq8.l4b1, kq8.r4b1, kq9.r4b1,kq10.r4b1, kq7.l4b1, kq6.l4b1, kq5.l4b1, kq4.l4b1, kq4.r4b1, kq5.r4b1, kq6.r4b1, kq7.r4b1, kq11.l4b1, kq11.r4b1, kq12.l4b1, kqt12.r4b1, kq13.l4b1, kq13.r4b1;
+	IF (tar > 1E-21) {quit;}// Error in IR4
+	
+}
+
+
+
+
+// -----------------------------------------------------------
+// macro for rematching IR5
+
+rematch_ir5(BETASTAR): macro = {
+	
+	
+	IF (BEAM->ENERGY > 500)
+	{
+	dmux = 0;
+	dmuy = 0;
+	BETXMAX=3000;
+	
+	}
+	ELSE
+	{
+	dmux = 0.26;
+	dmuy = 0.04;
+	BETXMAX=275;
+	}
+	
+	SEQEDIT, SEQUENCE = mynewhelhcb1;
+	FLATTEN;
+	EXTRACT, SEQUENCE = mynewhelhcb1, FROM= IP5 , TO= E.DS.R5.B1 , NEWNAME = IR5.R.B1;
+	EXTRACT, SEQUENCE = mynewhelhcb1, FROM= S.DS.L5.B1 , TO= IP5 , NEWNAME = IR5.L.B1;
+	FLATTEN;
+	ENDEDIT;
+	
+	Fieldmax = 400;
+    maxk = Fieldmax*299792458/(BEAM->ENERGY*1000000000);
+	
+	kqx2b.l5 : = kqx2a.l5;
+	
+	seqedit, sequence=IR5.L.B1; reflect; endedit;
+	
+	
+	USE, SEQUENCE = IR5.L.B1;
+	MATCH, SEQUENCE = IR5.L.B1, BETX = BETASTAR, BETY = BETASTAR, ALFX = 0 , ALFY = 0, DX = 0 , DPX = 0, MUX = 0, MUY = 0;
+	
+	    //WEIGHT, MUX=0, MUY=0;
+	
+	    
+	    //VARY, NAME = kqx3.l5;
+	    //VARY, NAME = kqx2a.l5;
+	    //VARY, NAME = kqx1.l5;
+
+	    
+        vary,name=KQ4.L5B1   ,lower=  -0, upper=maxk;
+        vary,name=KQ5.L5B1   ,lower=  -maxk, upper=0;
+        vary,name=KQ6.L5B1   ,lower=  -0, upper=maxk;
+        vary,name=KQ7.L5B1   ,lower=  -maxk, upper=0;
+        vary,name=KQ8.L5B1   ,lower=  -0, upper=maxk;
+        vary,name=KQ9.L5B1   ,lower=  -maxk, upper=0;
+        vary,name=KQ10.L5B1  ,lower=  -0, upper=maxk;
+        vary,name=KQTL11.L5B1,lower=  -maxk, upper=maxk;
+        vary,name=KQT12.L5B1 ,lower=  -maxk, upper=maxk;
+        vary,name=KQT13.L5B1 ,lower=  -maxk, upper=maxk;
+        
+        vary,name=KQ11.L5B1,lower=  -maxk, upper=0;
+        vary,name=KQ12.L5B1 ,lower=  -0, upper=maxk;
+        vary,name=KQ13.L5B1 ,lower=  -maxk, upper=0;
+
+
+	    constraint,	sequence=IR5.L.B1,	 range=MQYY.4L5.B1/MQ.13L5.B1,	betx<BETXMAX,	bety<BETXMAX;
+	    CONSTRAINT, SEQUENCE = IR5.L.B1, RANGE = S.DS.L5.B1 , BETX = sb.S.DS.L.5.B1->BETX , BETY = sb.S.DS.L.5.B1->BETY;
+	    CONSTRAINT, SEQUENCE = IR5.L.B1, RANGE = S.DS.L5.B1 , ALFX = -1*sb.S.DS.L.5.B1->ALFX , ALFY = -1*sb.S.DS.L.5.B1->ALFY;
+	    CONSTRAINT, SEQUENCE = IR5.L.B1, RANGE = S.DS.L5.B1 , DX = sb.S.DS.L.5.B1->DX	 , DPX = -1*sb.S.DS.L.5.B1->DPX;
+	    CONSTRAINT, SEQUENCE = IR5.L.B1, RANGE = S.DS.L5.B1 , MUX = 1.12816405+dmux, MUY = 1.33226001+dmuy;
+		
+	    
+	    
+	    
+
+	    LMDIF, CALLS = 20000, TOLERANCE = 1E-22;
+	    JACOBIAN, CALLS = 20000 , TOLERANCE = 1E-22 , STRATEGY = 1;
+	    
+    ENDMATCH;
+
+	IF (tar > 1E-21) {quit;}// Error in IR5 Right
+	
+	seqedit, sequence=IR5.L.B1; reflect; endedit;
+	
+    USE, SEQUENCE = IR5.R.B1;
+    MATCH, SEQUENCE = IR5.R.B1 , BETX = BETASTAR, BETY = BETASTAR, ALFX = 0 , ALFY = 0, DX = 0 , DPX = 0, MUX = 0, MUY = 0;
+    
+        //WEIGHT, MUX=0, MUY=0;
+	
+	    //VARY, NAME = kqx1.r5;
+	    //VARY, NAME = kqx2a.r5;
+	    //VARY, NAME = kqx3.r5;
+	    
+	    
+        vary,name=KQ4.R5B1   ,lower=  -maxk, upper=0;
+        vary,name=KQ5.R5B1   ,lower=  -0, upper=maxk;
+        vary,name=KQ6.R5B1   ,lower=  -maxk, upper=0;
+        vary,name=KQ7.R5B1   ,lower=  -0, upper=maxk;
+        vary,name=KQ8.R5B1   ,lower=  -maxk, upper=0;
+        vary,name=KQ9.R5B1   ,lower=  -0, upper=maxk;
+        vary,name=KQ10.R5B1  ,lower=  -maxk, upper=0;
+        
+        vary,name=KQTL11.R5B1,lower=  -maxk, upper=maxk;
+        vary,name=KQT12.R5B1 ,lower=  -maxk, upper=maxk;
+        vary,name=KQT13.R5B1 ,lower=  -maxk, upper=maxk;
+        
+        vary,name=KQ11.R5B1,lower=  -0, upper=maxk;
+        vary,name=KQ12.R5B1 ,lower=  -maxk, upper=0;
+        vary,name=KQ13.R5B1 ,lower=  -0, upper=maxk;
+
+	    
+	    CONSTRAINT, SEQUENCE = IR5.R.B1, RANGE = E.DS.R5.B1 , BETX = sb.E.DS.R.5.B1->BETX , BETY = sb.E.DS.R.5.B1->BETY;
+	    CONSTRAINT, SEQUENCE = IR5.R.B1, RANGE = E.DS.R5.B1 , ALFX = sb.E.DS.R.5.B1->ALFX , ALFY = sb.E.DS.R.5.B1->ALFY;
+	    CONSTRAINT, SEQUENCE = IR5.R.B1, RANGE = E.DS.R5.B1 , DX = sb.E.DS.R.5.B1->DX , DPX = sb.E.DS.R.5.B1->DPX;
+	    CONSTRAINT, SEQUENCE = IR5.R.B1, RANGE = E.DS.R5.B1 , MUX = 1.599102752 - dmux  , MUY = 1.282509386 - dmuy;
+		constraint,	sequence=IR5.R.B1,	 range=MQYY.4R5.B1/MQ.13R5.B1,	betx<BETXMAX,	bety<BETXMAX;
+	    
+	    
+	    //CONSTRAINT, SEQUENCE = IR5.R.B1, RANGE = E.DS.R5.B1 , MUX = 1.212472579  , MUY = 0.9736692273;
+	    //CONSTRAINT, SEQUENCE = IR5.R.B1, RANGE = E.DS.R5.B1 , MUX = 1.34353071   , MUY = 1.250854465;
+	    
+	    
+	    LMDIF, CALLS = 20000, TOLERANCE = 1E-22;
+	    JACOBIAN, CALLS = 2000 , TOLERANCE = 1E-22;
+	    
+    ENDMATCH;
+
+	SEQEDIT, SEQUENCE = mynewhelhcb1;
+	FLATTEN;
+	EXTRACT, SEQUENCE = mynewhelhcb1, FROM= S.DS.L5.B1 , TO= E.DS.R5.B1 , NEWNAME = IR5.Full.B1;
+	FLATTEN;
+	ENDEDIT;
+
+	USE, SEQUENCE = IR5.Full.B1;
+    TWISS, BETA0 = sb.S.DS.L.5.B1, MUX = 0, MUY = 0;//, file="IR5.tfs";
+	IF (tar > 1E-21) {quit;}// Error in IR5 Left
+}
+
+
+// -----------------------------------------------------------
+// macro for rematching IR6
+
+rematch_ir6: macro = {
+	
+	SEQEDIT, SEQUENCE = mynewhelhcb1;
+	FLATTEN;
+	EXTRACT, SEQUENCE = mynewhelhcb1, FROM= S.DS.L6.B1 , TO= E.DS.R6.B1 , NEWNAME = IR6.B1;
+	FLATTEN;
+	ENDEDIT;
+	
+	Fieldmax = 400;
+    maxk = Fieldmax*299792458/(BEAM->ENERGY*1000000000);
+	
+	
+	USE, SEQUENCE = IR6.B1;
+	MATCH, SEQUENCE = IR6.B1, BETA0 = sb.S.DS.L.6.B1, MUX=0, MUY=0;
+	
+	 
+	    VARY, NAME = kq13.l6b1;
+	    VARY, NAME = kq12.l6b1;	    
+	    VARY, NAME = kq11.l6b1;
+	    
+	    VARY, NAME = kq10.l6b1;
+	    VARY, NAME = kq9.l6b1;	    
+	    VARY, NAME = kq8.l6b1;
+	    
+	    VARY, NAME = kq5.l6b1;
+	    VARY, NAME = kq4.l6b1;
+	    
+	    
+	    VARY, NAME = kq4.r6b1;
+	    VARY, NAME = kq5.r6b1;
+	    	    
+	    VARY, NAME = kq8.r6b1;
+	    VARY, NAME = kq9.r6b1;
+	    VARY, NAME = kq10.r6b1;
+	    
+	    VARY, NAME = kq11.r6b1;
+	    VARY, NAME = kq12.r6b1;
+	    VARY, NAME = kq13.r6b1;	    
+	    
+   
+	    
+	    
+	    CONSTRAINT, SEQUENCE = IR6.B1, RANGE = E.DS.R6.B1 , BETX = sb.E.DS.R.6.B1->BETX , BETY = sb.E.DS.R.6.B1->BETY;
+	    CONSTRAINT, SEQUENCE = IR6.B1, RANGE = E.DS.R6.B1 , ALFX =sb.E.DS.R.6.B1->ALFX , ALFY =sb.E.DS.R.6.B1->ALFY;
+	    CONSTRAINT, SEQUENCE = IR6.B1, RANGE = E.DS.R6.B1 , DX = sb.E.DS.R.6.B1->DX , DPX =sb.E.DS.R.6.B1->DPX;
+	    CONSTRAINT, SEQUENCE = IR6.B1, RANGE = E.DS.R6.B1 , MUX = 1.585263876 , MUY = 1.493004942 ;
+	    
+	    
+	    LMDIF, CALLS = 20000, TOLERANCE = 1E-22;
+	    JACOBIAN, CALLS = 2000 , TOLERANCE = 1E-22 , STRATEGY = 3;
+	    
+    ENDMATCH;
+
+}
+
+
+// -----------------------------------------------------------
+// macro for rematching IR7
+
+rematch_ir7: macro = {
+	
+	SEQEDIT, SEQUENCE = mynewhelhcb1;
+	FLATTEN;
+	EXTRACT, SEQUENCE = mynewhelhcb1, FROM= S.DS.L7.B1 , TO= E.DS.R7.B1 , NEWNAME = IR7.B1;
+	FLATTEN;
+	ENDEDIT;
+	
+	Fieldmax = 400;
+    maxk = Fieldmax*299792458/(BEAM->ENERGY*1000000000);
+	
+	
+	USE, SEQUENCE = IR7.B1;
+	MATCH, SEQUENCE = IR7.B1, BETA0 = sb.S.DS.L.7.B1, MUX=0, MUY=0;
+	
+	 
+	    VARY, NAME = kq13.l7b1;
+	    VARY, NAME = kq12.l7b1;	    
+	    VARY, NAME = kq11.l7b1;
+	    
+	    VARY, NAME = kq10.l7b1;
+	    VARY, NAME = kq9.l7b1;	    
+	    VARY, NAME = kq8.l7b1;
+	    
+	    VARY, NAME = kqtl7.l7b1;
+	    VARY, NAME = kq6.l7b1;
+	    
+	    VARY, NAME = kq5.lr7;
+	    VARY, NAME = kq4.lr7;
+	    
+	    VARY, NAME = kq6.r7b1;
+	    VARY, NAME = kqtl7.r7b1;
+	    	    
+	    VARY, NAME = kq8.r7b1;
+	    VARY, NAME = kq9.r7b1;
+	    VARY, NAME = kq10.r7b1;
+	    
+	    VARY, NAME = kq11.r7b1;
+	    VARY, NAME = kq12.r7b1;
+	    VARY, NAME = kq13.r7b1;	    
+	    
+   
+	    
+	    
+	    CONSTRAINT, SEQUENCE = IR7.B1, RANGE = E.DS.R7.B1 , BETX = sb.E.DS.R.7.B1->BETX , BETY = sb.E.DS.R.7.B1->BETY;
+	    CONSTRAINT, SEQUENCE = IR7.B1, RANGE = E.DS.R7.B1 , ALFX = sb.E.DS.R.7.B1->ALFX , ALFY = sb.E.DS.R.7.B1->ALFY;
+	    CONSTRAINT, SEQUENCE = IR7.B1, RANGE = E.DS.R7.B1 , DX = sb.E.DS.R.7.B1->DX , DPX = sb.E.DS.R.7.B1->DPX;
+	    CONSTRAINT, SEQUENCE = IR7.B1, RANGE = E.DS.R7.B1 , MUX = 2.281527982   , MUY = 2.459200223;
+	    
+	    
+	    LMDIF, CALLS = 20000, TOLERANCE = 1E-22;
+	    JACOBIAN, CALLS = 2000 , TOLERANCE = 1E-22 , STRATEGY = 3;
+	    
+    ENDMATCH;
+
+}
+
+
+// -----------------------------------------------------------
+// macro for rematching IR8
+
+rematch_ir8: macro = {
+	
+	SEQEDIT, SEQUENCE = mynewhelhcb1;
+	FLATTEN;
+	EXTRACT, SEQUENCE = mynewhelhcb1, FROM= IP8 , TO= E.DS.R8.B1 , NEWNAME = IR8.R.B1;
+	EXTRACT, SEQUENCE = mynewhelhcb1, FROM= S.DS.L8.B1 , TO= IP8 , NEWNAME = IR8.L.B1;
+	FLATTEN;
+	ENDEDIT;
+	
+	
+	USE, SEQUENCE = IR8.L.B1;
+	MATCH, SEQUENCE = IR8.L.B1 , BETA0 = sb.S.DS.L.8.B1, MUX=0, MUY=0;
+	
+	    	    
+	    VARY, NAME = kq13.l8b1;
+	    VARY, NAME = kq12.l8b1;
+	    VARY, NAME = kq11.l8b1;
+	    
+	    VARY, NAME = kq10.l8b1;
+	    VARY, NAME = kq9.l8b1;
+	    VARY, NAME = kq8.l8b1;
+	    
+	    VARY, NAME = kq7.l8b1;
+	    VARY, NAME = kq6.l8b1;
+	    VARY, NAME = kq5.l8b1;
+	    VARY, NAME = kq4.l8b1;
+	    
+	    //VARY, NAME = ktqx2.l8;
+	    //VARY, NAME = ktqx1.l8;
+	    //VARY, NAME = kqx.l8;
+	    
+	    
+	    
+	    
+	    CONSTRAINT, SEQUENCE = IR8.L.B1, RANGE = IP8 , BETX = sb.IP.8.B1->BETX , BETY = sb.IP.8.B1->BETY;
+	    CONSTRAINT, SEQUENCE = IR8.L.B1, RANGE = IP8 , ALFX = sb.IP.8.B1->ALFX , ALFY = sb.IP.8.B1->ALFY;
+	    CONSTRAINT, SEQUENCE = IR8.L.B1, RANGE = IP8 , DX =  sb.IP.8.B1->DX , DPX = sb.IP.8.B1->DPX;
+	    CONSTRAINT, SEQUENCE = IR8.L.B1, RANGE = IP8 , MUX = 1.468670202 , MUY = 1.076137157 ;
+	    
+	    
+	    LMDIF, CALLS = 20000, TOLERANCE = 1E-22;
+	    JACOBIAN, CALLS = 2000 , TOLERANCE = 1E-22 , STRATEGY = 3;
+	    
+    ENDMATCH;
+    
+    USE, SEQUENCE = IR8.R.B1;
+    MATCH, SEQUENCE = IR8.R.B1 , BETA0 = sb.IP.8.B1, MUX=0, MUY=0;
+	
+	    //VARY, NAME = kqx.r8;
+	    //VARY, NAME = ktqx1.r8;
+	    //VARY, NAME = ktqx2.r8;
+	    
+	    VARY, NAME = kq4.r8b1;
+	    VARY, NAME = kq5.r8b1;
+	    VARY, NAME = kq6.r8b1;
+	    VARY, NAME = kq7.r8b1;
+	    
+	    VARY, NAME = kq8.r8b1;
+	    VARY, NAME = kq9.r8b1;
+	    VARY, NAME = kq10.r8b1;
+	    
+	    VARY, NAME = kq11.r8b1;
+	    VARY, NAME = kq12.r8b1;
+	    VARY, NAME = kq13.r8b1;
+	    
+	    
+	    CONSTRAINT, SEQUENCE = IR8.R.B1, RANGE = E.DS.R8.B1 , BETX = sb.E.DS.R.8.B1->BETX , BETY = sb.E.DS.R.8.B1->BETY;
+	    CONSTRAINT, SEQUENCE = IR8.R.B1, RANGE = E.DS.R8.B1 , ALFX = sb.E.DS.R.8.B1->ALFX , ALFY = sb.E.DS.R.8.B1->ALFY;
+	    CONSTRAINT, SEQUENCE = IR8.R.B1, RANGE = E.DS.R8.B1 , DX = sb.E.DS.R.8.B1->DX , DPX = sb.E.DS.R.8.B1->DPX;
+	    CONSTRAINT, SEQUENCE = IR8.R.B1, RANGE = E.DS.R8.B1 , MUX = 1.408510494 , MUY = 1.351476935 ;
+	    
+	    
+	    LMDIF, CALLS = 20000, TOLERANCE = 1E-22;
+	    JACOBIAN, CALLS = 2000 , TOLERANCE = 1E-22 , STRATEGY = 3;
+	    
+    ENDMATCH;
+
+}
+
+// -----------------------------------------------------------
+// match tunes by changing phase advance in arc cells, then rematch every insertion
+match_tunes_arc(QX_TAR, QY_TAR): macro = {
+	USE, SEQUENCE = mynewhelhcb1;
+	TWISS ;
+    qx0 = table(summ,q1);
+    qy0 = table(summ,q2);
+    
+    DQx = qx0 - QX_TAR;
+    DQy = qy0 - QY_TAR;
+    
+       
+    Value, DQx, DQy;
+    
+    IF (DQx > 0.1 || DQy > 0.1)    
+    {
+    
+	NFODO =17;
+	
+	DQx_perCell = DQx / (NFODO*8) ;
+	DQy_perCell = DQy / (NFODO*8) ;
+	
+	Value, DQx_perCell, DQy_perCell;
+	
+	// Extract one fodo cell for rematching
+
+    USE, SEQUENCE=mynewhelhcb1;
+
+
+    SEQEDIT, SEQUENCE=mynewhelhcb1;
+    FLATTEN;
+    INSTALL, ELEMENT=start, CLASS=marker, AT=-0.775 , FROM=QFH[16];
+    INSTALL, ELEMENT=end, CLASS=marker, AT=+0.775 , FROM=QFH[17];
+    ENDEDIT;
+
+    SEQEDIT, SEQUENCE=mynewhelhcb1;
+    FLATTEN;
+    EXTRACT, SEQUENCE=mynewhelhcb1, FROM=start, TO=end, NEWNAME=cell;
+    ENDEDIT;
+
+    USE, SEQUENCE=cell;
+
+    TWISS;//, FILE='test.out';
+    QXprev = table(summ,q1);
+    QYprev = table(summ,q2);
+    
+    Value, QXprev, QYprev;
+
+    // rematch to right phase advance
+
+    MATCH, SEQUENCE=cell;
+        
+        VARY, NAME=KQF;
+        VARY, NAME=KQD;
+        
+        CONSTRAINT, SEQUENCE=cell, RANGE=#E, MUX=QXprev-DQX_perCell, MUY=QYprev-DQy_perCell;
+        
+        LMDIF,TOLERANCE=1e-23;
+
+    ENDMATCH;
+
+    VALUE, KQF;
+    VALUE, KQD;
+    
+    //  difference in distances between inner and outer cell is not considered
+        
+    SEQEDIT, SEQUENCE=cell;
+    FLATTEN;
+    INSTALL, ELEMENT=eqf, CLASS=marker, AT=1.55 , FROM=CELL$START;
+    INSTALL, ELEMENT=sqf, CLASS=marker, AT=135.6866244 , FROM=CELL$START;
+    INSTALL, ELEMENT=eqd, CLASS=marker, AT=70.16831222 , FROM=CELL$START;
+    INSTALL, ELEMENT=sqd, CLASS=marker, AT=67.06831222 , FROM=CELL$START;
+    ENDEDIT;
+
+    //Arc 12
+        
+    USE, SEQUENCE=cell;
+    SAVEBETA,LABEL=sb.E.DS.R.1.B1, PLACE=eqf, SEQUENCE=cell;
+    TWISS;
+
+    USE, SEQUENCE=cell;
+    SAVEBETA,LABEL=sb.S.DS.L.2.B1, PLACE=sqf, SEQUENCE=cell;
+    TWISS;  
+
+    //Arc 23
+
+    USE, SEQUENCE=cell;
+    SAVEBETA,LABEL=sb.E.DS.R.2.B1, PLACE=eqd, SEQUENCE=cell;
+    TWISS;
+
+    USE, SEQUENCE=cell;
+    SAVEBETA,LABEL=sb.S.DS.L.3.B1, PLACE=sqd, SEQUENCE=cell;
+    TWISS;
+
+    //Arc 34
+
+    USE, SEQUENCE=cell;
+    SAVEBETA,LABEL=sb.E.DS.R.3.B1, PLACE=eqf, SEQUENCE=cell;
+    TWISS;
+
+    USE, SEQUENCE=cell;
+    SAVEBETA,LABEL=sb.S.DS.L.4.B1, PLACE=sqf, SEQUENCE=cell;
+    TWISS;
+
+    //Arc 45
+
+    USE, SEQUENCE=cell;
+    SAVEBETA,LABEL=sb.E.DS.R.4.B1, PLACE=eqd, SEQUENCE=cell;
+    TWISS;
+
+    USE, SEQUENCE=cell;
+    SAVEBETA,LABEL=sb.S.DS.L.5.B1, PLACE=sqd, SEQUENCE=cell;
+    TWISS;
+
+    //Arc 56
+
+    USE, SEQUENCE=cell;
+    SAVEBETA,LABEL=sb.E.DS.R.5.B1, PLACE=eqf, SEQUENCE=cell;
+    TWISS;
+
+    USE, SEQUENCE=cell;
+    SAVEBETA,LABEL=sb.S.DS.L.6.B1, PLACE=sqf, SEQUENCE=cell;
+    TWISS;
+
+    //Arc 67
+
+    USE, SEQUENCE=cell;
+    SAVEBETA,LABEL=sb.E.DS.R.6.B1, PLACE=eqd, SEQUENCE=cell;
+    TWISS;
+
+    USE, SEQUENCE=cell;
+    SAVEBETA,LABEL=sb.S.DS.L.7.B1, PLACE=sqd, SEQUENCE=cell;
+    TWISS;
+
+    //Arc 78
+
+    USE, SEQUENCE=cell;
+    SAVEBETA,LABEL=sb.E.DS.R.7.B1, PLACE=eqf, SEQUENCE=cell;
+    TWISS;
+
+    USE, SEQUENCE=cell;
+    SAVEBETA,LABEL=sb.S.DS.L.8.B1, PLACE=sqf, SEQUENCE=cell;
+    TWISS;
+
+    //Arc 81
+
+    USE, SEQUENCE=cell;
+    SAVEBETA,LABEL=sb.E.DS.R.8.B1, PLACE=eqd, SEQUENCE=cell;
+    TWISS;
+
+    USE, SEQUENCE=cell;
+    SAVEBETA,LABEL=sb.S.DS.L.1.B1, PLACE=sqd, SEQUENCE=cell;
+    TWISS;
+     
+     
+    EXEC, rematch_ir2; 
+    EXEC, rematch_ir3;
+    EXEC, rematch_ir4(0.35,0.35);
+    IF (BEAM->ENERGY > 500)
+	{
+    IP15BETASTAR=0.25;	
+	}
+	ELSE
+	{
+    IP15BETASTAR=11;
+	}
+    
+    EXEC, rematch_ir5(IP15BETASTAR);
+    EXEC, cp_ir5_to_ir1;   
+    EXEC, rematch_ir6;
+    EXEC, rematch_ir7;
+    EXEC, rematch_ir8;
+
+
+    }
+    USE, SEQUENCE = mynewhelhcb1;
+    TWISS ;
+    //plot , haxis=s, vaxis1=betx,bety, vaxis2=dx, colour=100, noversion=True;
+    qx0 = table(summ,q1);
+    qy0 = table(summ,q2);
+    
+    DQx = qx0 - QX_TAR;
+    DQy = qy0 - QY_TAR;
+    
+    Value, DQx, DQy;
+    
+    DQx4 = 0.35 + DQx;
+    DQy4 = 0.35 + DQy;
+    
+    EXEC, rematch_ir4(DQx4, DQy4);
+    
+    VALUE, DQx4, DQy4;
+    
+    SEQEDIT, SEQUENCE=mynewhelhcb1;
+    FLATTEN;
+    REMOVE, ELEMENT=start;
+    REMOVE, ELEMENT=end;
+    ENDEDIT;
+	
+	
+
+}
+
+// ---------------------------------------------------------
+// copy settings from ir5 to ir1
+
+cp_ir5_to_ir1:macro ={
+ kqt13.l1b1 = kqt13.l5b1 ;
+ kqt12.l1b1 = kqt12.l5b1 ;
+ kqtl11.l1b1 = kqtl11.l5b1 ;
+ 
+ kq13.l1b1 = kq13.l5b1 ;
+ kq12.l1b1 = kq12.l5b1 ;
+ kq11.l1b1 = kq11.l5b1 ;
+ kq10.l1b1 = kq10.l5b1 ;
+ kq9.l1b1  = kq9.l5b1  ;
+ kq8.l1b1  = kq8.l5b1  ;
+ kq7.l1b1  = kq7.l5b1  ;
+ kq6.l1b1  = kq6.l5b1  ;
+ kq5.l1b1  = kq5.l5b1  ;
+ kq4.l1b1  = kq4.l5b1  ;
+
+ kq4.r1b1  = kq4.r5b1  ;
+ kq5.r1b1  = kq5.r5b1  ;
+ kq6.r1b1  = kq6.r5b1  ;
+ kq7.r1b1  = kq7.r5b1  ;
+ kq8.r1b1  = kq8.r5b1  ;
+ kq9.r1b1  = kq9.r5b1  ;
+ kq10.r1b1 = kq10.r5b1 ;
+ kq11.r1b1 = kq11.r5b1 ;
+ kq12.r1b1 = kq12.r5b1 ;
+ kq13.r1b1 = kq13.r5b1 ;
+ 
+ kqtl11.r1b1 = kqtl11.r5b1 ;
+ kqt12.r1b1 = kqt12.r5b1 ;
+ kqt13.r1b1 = kqt13.r5b1 ;
+
+}
+
+
+// -----------------------------------------------------------
+// correct spurious dispersion (HL-LHC scheme)
+cor_spur_dis: macro = {
+
+// disable crossing here
+
+on_x1=0;
+on_x2=0;
+on_x5=0;
+on_x8=0;
+
+
+    USE, SEQUENCE = mynewhelhcb1;	
+	SAVEBETA, LABEL = sb.IP.8.nCross.B1, PLACE = IP8;	
+	SAVEBETA, LABEL = sb.E.DS.R.8.nCross.B1, PLACE = E.DS.R8.B1;	
+	SAVEBETA, LABEL = sb.S.DS.R.8.nCross.B1, PLACE = S.DS.R8.B1;	
+	SAVEBETA, LABEL = sb.E.DS.L.8.nCross.B1, PLACE = E.DS.L8.B1;	
+	SAVEBETA, LABEL = sb.S.DS.L.8.nCross.B1, PLACE = S.DS.L8.B1;
+	
+	SAVEBETA, LABEL = sb.IP.1.nCross.B1, PLACE = IP1;	
+	SAVEBETA, LABEL = sb.E.DS.R.1.nCross.B1, PLACE = E.DS.R1.B1;	
+	SAVEBETA, LABEL = sb.S.DS.R.1.nCross.B1, PLACE = S.DS.R1.B1;	
+	SAVEBETA, LABEL = sb.E.DS.L.1.nCross.B1, PLACE = E.DS.L1.B1;	
+	SAVEBETA, LABEL = sb.S.DS.L.1.nCross.B1, PLACE = S.DS.L1.B1;
+	
+	SAVEBETA, LABEL = sb.IP.2.nCross.B1, PLACE = IP2;	
+	SAVEBETA, LABEL = sb.E.DS.R.2.nCross.B1, PLACE = E.DS.R2.B1;	
+	SAVEBETA, LABEL = sb.S.DS.R.2.nCross.B1, PLACE = S.DS.R2.B1;	
+	SAVEBETA, LABEL = sb.E.DS.L.2.nCross.B1, PLACE = E.DS.L2.B1;	
+	SAVEBETA, LABEL = sb.S.DS.L.2.nCross.B1, PLACE = S.DS.L2.B1;
+	
+	SAVEBETA, LABEL = sb.IP.4.nCross.B1, PLACE = IP4;	
+	SAVEBETA, LABEL = sb.E.DS.R.4.nCross.B1, PLACE = E.DS.R4.B1;	
+	SAVEBETA, LABEL = sb.S.DS.R.4.nCross.B1, PLACE = S.DS.R4.B1;	
+	SAVEBETA, LABEL = sb.E.DS.L.4.nCross.B1, PLACE = E.DS.L4.B1;	
+	SAVEBETA, LABEL = sb.S.DS.L.4.nCross.B1, PLACE = S.DS.L4.B1;
+	
+	SAVEBETA, LABEL = sb.IP.5.nCross.B1, PLACE = IP5;	
+	SAVEBETA, LABEL = sb.E.DS.R.5.nCross.B1, PLACE = E.DS.R5.B1;	
+	SAVEBETA, LABEL = sb.S.DS.R.5.nCross.B1, PLACE = S.DS.R5.B1;	
+	SAVEBETA, LABEL = sb.E.DS.L.5.nCross.B1, PLACE = E.DS.L5.B1;	
+	SAVEBETA, LABEL = sb.S.DS.L.5.nCross.B1, PLACE = S.DS.L5.B1;
+	
+	SAVEBETA, LABEL = sb.IP.6.nCross.B1, PLACE = IP6;	
+	SAVEBETA, LABEL = sb.E.DS.R.6.nCross.B1, PLACE = E.DS.R6.B1;	
+	SAVEBETA, LABEL = sb.S.DS.R.6.nCross.B1, PLACE = S.DS.R6.B1;	
+	SAVEBETA, LABEL = sb.E.DS.L.6.nCross.B1, PLACE = E.DS.L6.B1;	
+	SAVEBETA, LABEL = sb.S.DS.L.6.nCross.B1, PLACE = S.DS.L6.B1;
+	TWISS;
+
+
+// then enable crossing here
+
+on_x1=1;
+on_x5=1;
+
+
+    USE, SEQUENCE = mynewhelhcb1;	
+	SAVEBETA, LABEL = sb.IP.8.Cross.B1, PLACE = IP8;	
+	SAVEBETA, LABEL = sb.E.DS.R.8.Cross.B1, PLACE = E.DS.R8.B1;	
+	SAVEBETA, LABEL = sb.S.DS.R.8.Cross.B1, PLACE = S.DS.R8.B1;	
+	SAVEBETA, LABEL = sb.E.DS.L.8.Cross.B1, PLACE = E.DS.L8.B1;	
+	SAVEBETA, LABEL = sb.S.DS.L.8.Cross.B1, PLACE = S.DS.L8.B1;
+	
+	SAVEBETA, LABEL = sb.IP.1.Cross.B1, PLACE = IP1;	
+	SAVEBETA, LABEL = sb.E.DS.R.1.Cross.B1, PLACE = E.DS.R1.B1;	
+	SAVEBETA, LABEL = sb.S.DS.R.1.Cross.B1, PLACE = S.DS.R1.B1;	
+	SAVEBETA, LABEL = sb.E.DS.L.1.Cross.B1, PLACE = E.DS.L1.B1;	
+	SAVEBETA, LABEL = sb.S.DS.L.1.Cross.B1, PLACE = S.DS.L1.B1;
+	
+	SAVEBETA, LABEL = sb.IP.2.Cross.B1, PLACE = IP2;	
+	SAVEBETA, LABEL = sb.E.DS.R.2.Cross.B1, PLACE = E.DS.R2.B1;	
+	SAVEBETA, LABEL = sb.S.DS.R.2.Cross.B1, PLACE = S.DS.R2.B1;	
+	SAVEBETA, LABEL = sb.E.DS.L.2.Cross.B1, PLACE = E.DS.L2.B1;	
+	SAVEBETA, LABEL = sb.S.DS.L.2.Cross.B1, PLACE = S.DS.L2.B1;
+	
+	SAVEBETA, LABEL = sb.IP.4.Cross.B1, PLACE = IP4;	
+	SAVEBETA, LABEL = sb.E.DS.R.4.Cross.B1, PLACE = E.DS.R4.B1;	
+	SAVEBETA, LABEL = sb.S.DS.R.4.Cross.B1, PLACE = S.DS.R4.B1;	
+	SAVEBETA, LABEL = sb.E.DS.L.4.Cross.B1, PLACE = E.DS.L4.B1;	
+	SAVEBETA, LABEL = sb.S.DS.L.4.Cross.B1, PLACE = S.DS.L4.B1;
+	
+	SAVEBETA, LABEL = sb.IP.5.Cross.B1, PLACE = IP5;	
+	SAVEBETA, LABEL = sb.E.DS.R.5.Cross.B1, PLACE = E.DS.R5.B1;	
+	SAVEBETA, LABEL = sb.S.DS.R.5.Cross.B1, PLACE = S.DS.R5.B1;	
+	SAVEBETA, LABEL = sb.E.DS.L.5.Cross.B1, PLACE = E.DS.L5.B1;	
+	SAVEBETA, LABEL = sb.S.DS.L.5.Cross.B1, PLACE = S.DS.L5.B1;
+	
+	SAVEBETA, LABEL = sb.IP.6.Cross.B1, PLACE = IP6;	
+	SAVEBETA, LABEL = sb.E.DS.R.6.Cross.B1, PLACE = E.DS.R6.B1;	
+	SAVEBETA, LABEL = sb.S.DS.R.6.Cross.B1, PLACE = S.DS.R6.B1;	
+	SAVEBETA, LABEL = sb.E.DS.L.6.Cross.B1, PLACE = E.DS.L6.B1;	
+	SAVEBETA, LABEL = sb.S.DS.L.6.Cross.B1, PLACE = S.DS.L6.B1;
+	TWISS;
+
+    
+EXEC, cor_spur_dis_IP1;
+EXEC, cor_spur_dis_IP5;
+
+}
+
+// -----------------------------------------------------------
+// track dispersion 
+track_dis(NIP1,NIP2,dpxaux,dpyaux) : macro ={
+
+USE, SEQUENCE=mynewhelhcb1, RANGE=IPNIP1/IPNIP2;
+TWISS, BETX=sb.IP.NIP1.nCross.B1->BETX, BETY=sb.IP.NIP1.nCross.B1->BETY, X=sb.IP.NIP1.Cross.B1->X, PX=sb.IP.NIP1.Cross.B1->PX, Y=sb.IP.NIP1.Cross.B1->Y, PY=sb.IP.NIP1.Cross.B1->PY, DX=0, DPX=dpxaux, DY=0, DPY=dpyaux; 
+
+XRES=TABLE(TWISS,IPNIP2,X); YRES=TABLE(TWISS,IPNIP2,Y);
+PXRES=TABLE(TWISS,IPNIP2,PX); PYRES=TABLE(TWISS,IPNIP2,PY);
+DXRES=TABLE(TWISS,IPNIP2,DX); DYRES=TABLE(TWISS,IPNIP2,DY);
+DPXRES=TABLE(TWISS,IPNIP2,DPX); DPYRES=TABLE(TWISS,IPNIP2,DPY);
+
+}
+
+// -----------------------------------------------------------
+// correct spurious dispersion (HL-LHC scheme) in IP1
+cor_spur_dis_IP1: macro = {
+    
+    dpxaux=0;
+    dpyaux=0;
+    
+    USE, SEQUENCE=mynewhelhcb1, range=IP8/IP1.L1;
+    MATCH, SEQUENCE=mynewhelhcb1, BETX=sb.IP.8.nCross.B1->BETX, BETY=sb.IP.8.nCross.B1->BETY, DX=sb.IP.8.nCross.B1->DX, DPX=sb.IP.8.nCross.B1->DPX, DY=0, DPY=0, X=0, PX=0, Y=0, PY=0 ;
+    
+    VARY, NAME=acbh14.r8b1, STEP=1E-18;
+    VARY, NAME=acbh16.r8b1, STEP=1E-18; 
+    VARY, NAME=acbh16.l1b1, STEP=1E-18;
+    VARY, NAME=acbh14.l1b1, STEP=1E-18;
+    
+    VARY, NAME=acbv15.r8b1, STEP=1E-18;
+    VARY, NAME=acbv17.r8b1, STEP=1E-18; 
+    VARY, NAME=acbv17.l1b1, STEP=1E-18;
+    VARY, NAME=acbv15.l1b1, STEP=1E-18;
+    
+    CONSTRAINT, SEQUENCE=mynewhelhcb1, RANGE=E.DS.L1.B1, X=0, Y=0, PX=0, PY=0;
+    CONSTRAINT, SEQUENCE=mynewhelhcb1, RANGE=IP1.L1, DX=0, DY=0;
+
+    
+    LMDIF, CALLS=2000, TOLERANCE=1E-12;
+    JACOBIAN, CALLS=2000, TOLERANCE=1E-22;
+    
+    ENDMATCH;
+   
+   
+    USE, SEQUENCE=mynewhelhcb1, RANGE=IP1.L1/IP2;
+    MATCH, USE_MACRO;
+
+    VARY, NAME=acbh15.r1b1, STEP=1E-18;
+    VARY, NAME=acbh17.r1b1, STEP=1E-18;
+    VARY, NAME=acbh17.l2b1, STEP=1E-18;
+    VARY, NAME=acbh15.l2b1, STEP=1E-18;
+    
+    VARY, NAME=acbv14.r1b1, STEP=1E-18;
+    VARY, NAME=acbv16.r1b1, STEP=1E-18;
+    VARY, NAME=acbv16.l2b1, STEP=1E-18;
+    VARY, NAME=acbv14.l2b1, STEP=1E-18;
+    
+    VARY, NAME=dpxaux;
+    VARY, NAME=dpyaux;
+    
+    USE_MACRO, NAME=track_dis(1,2,dpxaux,dpyaux);
+    
+    CONSTRAINT, EXPR=XRES=0;
+    CONSTRAINT, EXPR=PXRES=0;
+    CONSTRAINT, EXPR=DXRES=sb.IP.2.nCross.B1->DX;
+    CONSTRAINT, EXPR=DPXRES=sb.IP.2.nCross.B1->DPX;
+    
+    CONSTRAINT, EXPR=YRES=0;
+    CONSTRAINT, EXPR=PYRES=0;
+    CONSTRAINT, EXPR=DYRES=0;
+    CONSTRAINT, EXPR=DPYRES=0;
+
+    LMDIF, CALLS=2000, TOLERANCE=1E-12;
+    JACOBIAN, CALLS=2000, TOLERANCE=1E-22;   
+    
+    
+    ENDMATCH;    
+
+}
+
+// -----------------------------------------------------------
+// correct spurious dispersion (HL-LHC scheme) in IP5
+cor_spur_dis_IP5: macro = {
+    
+    dpxaux=0;
+    dpyaux=0;    
+
+    USE, SEQUENCE=mynewhelhcb1, range=IP4/IP5;
+    MATCH, SEQUENCE=mynewhelhcb1, BETX=sb.IP.4.nCross.B1->BETX, BETY=sb.IP.4.nCross.B1->BETY, DX=sb.IP.4.nCross.B1->DX, DPX=sb.IP.4.nCross.B1->DPX, DY=0, DPY=0, X=0, PX=0, Y=0, PY=0 ;
+    
+    VARY, NAME=acbh14.r4b1, STEP=1E-18;
+    VARY, NAME=acbh16.r4b1, STEP=1E-18; 
+    VARY, NAME=acbh16.l5b1, STEP=1E-18;
+    VARY, NAME=acbh14.l5b1, STEP=1E-18;
+    
+    VARY, NAME=acbv15.r4b1, STEP=1E-18;
+    VARY, NAME=acbv17.r4b1, STEP=1E-18; 
+    VARY, NAME=acbv17.l5b1, STEP=1E-18;
+    VARY, NAME=acbv15.l5b1, STEP=1E-18;
+    
+    CONSTRAINT, SEQUENCE=mynewhelhcb1, RANGE=E.DS.L5.B1, X=0, Y=0, PX=0, PY=0;
+    CONSTRAINT, SEQUENCE=mynewhelhcb1, RANGE=IP5, DX=0, DY=0;
+    
+    
+    LMDIF, CALLS=2000, TOLERANCE=1E-12;
+    JACOBIAN, CALLS=2000, TOLERANCE=1E-22;
+    
+    ENDMATCH;
+   
+    
+    USE, SEQUENCE=mynewhelhcb1, RANGE=IP5/IP6;
+    MATCH, USE_MACRO;
+
+    VARY, NAME=acbh15.r5b1, STEP=1E-18;
+    VARY, NAME=acbh17.r5b1, STEP=1E-18;
+    VARY, NAME=acbh17.l6b1, STEP=1E-18;
+    VARY, NAME=acbh15.l6b1, STEP=1E-18;
+    
+    VARY, NAME=acbv14.r5b1, STEP=1E-18;
+    VARY, NAME=acbv16.r5b1, STEP=1E-18;
+    VARY, NAME=acbv16.l6b1, STEP=1E-18;
+    VARY, NAME=acbv14.l6b1, STEP=1E-18;
+    
+    VARY, NAME=dpxaux;
+    VARY, NAME=dpyaux;
+    
+    USE_MACRO, NAME=track_dis(5,6,dpxaux,dpyaux);
+    
+    CONSTRAINT, EXPR=XRES=0;
+    CONSTRAINT, EXPR=PXRES=0;
+    CONSTRAINT, EXPR=DXRES=sb.IP.6.nCross.B1->DX;
+    CONSTRAINT, EXPR=DPXRES=sb.IP.6.nCross.B1->DPX;
+    
+    CONSTRAINT, EXPR=YRES=0;
+    CONSTRAINT, EXPR=PYRES=0;
+    CONSTRAINT, EXPR=DYRES=0;
+    CONSTRAINT, EXPR=DPYRES=0;
+
+    LMDIF, CALLS=2000, TOLERANCE=1E-12;
+    JACOBIAN, CALLS=2000, TOLERANCE=1E-22;   
+    
+    
+    ENDMATCH;
+    
+}
+
+// -----------------------------------------------------------
+// save beta0 in IPs
+save_tws_ir(IRN): macro = {
+    USE, SEQUENCE = mynewhelhcb1;
+
+	
+	SAVEBETA, LABEL = sb.IP.IRN.B1, PLACE = IPIRN;
+	
+	SAVEBETA, LABEL = sb.E.DS.R.IRN.B1, PLACE = E.DS.RIRN.B1;	
+	SAVEBETA, LABEL = sb.S.DS.R.IRN.B1, PLACE = S.DS.RIRN.B1;
+	
+	SAVEBETA, LABEL = sb.E.DS.L.IRN.B1, PLACE = E.DS.LIRN.B1;	
+	SAVEBETA, LABEL = sb.S.DS.L.IRN.B1, PLACE = S.DS.LIRN.B1;
+	TWISS;
+}
+
+// -----------------------------------------------------------
+// macro to save twiss functions of fodo cell, input sector nr e.g. 34
+save_tws_cell(ARCN): macro = {
+	
+	SEQEDIT, SEQUENCE = mynewhelhcb1;
+	FLATTEN;
+	EXTRACT, SEQUENCE = mynewhelhcb1, FROM= S.CELL.ARCN.B1 , TO= E.CELL.ARCN.B1, NEWNAME = helhc_cell_ARCN;
+	FLATTEN;
+	ENDEDIT;
+
+	USE, SEQUENCE = helhc_cell_ARCN;	
+	
+	SAVEBETA, LABEL= sb.cell_tw_ARCN, PLACE = #E ;
+	TWISS;
+	
+	SELECT, FLAG=twiss, clear;
+	
+	USE, SEQUENCE = mynewhelhcb1;
+
+}
+
+// -----------------------------------------------------------
+// macro to plot twiss functions of fodo cell, input sector nr e.g. 34
+plot_tws_cell(ARCN): macro = {
+	
+	SEQEDIT, SEQUENCE = mynewhelhcb1;
+	FLATTEN;
+	EXTRACT, SEQUENCE = mynewhelhcb1, FROM= S.CELL.ARCN.B1 , TO= E.CELL.ARCN.B1, NEWNAME = helhc_cell_ARCN;
+	FLATTEN;
+	ENDEDIT;
+
+	USE, SEQUENCE = helhc_cell_ARCN;	
+	
+	TWISS;
+	PLOT, HAXIS = S, VAXIS1=BETX,BETY, VAXIS2=DX , COLOUR =100, NOVERSION=True;
+	
+	SELECT, FLAG=twiss, clear;
+	
+	USE, SEQUENCE = mynewhelhcb1;
+
+}
+
+// -----------------------------------------------------------
+// macro for plotting IRs , for now not working with ir1
+plot_ir(IRN): macro = {
+    
+    USE, SEQUENCE = mynewhelhcb1;
+    
+    
+    SEQEDIT, SEQUENCE = mynewhelhcb1;
+    FLATTEN;
+    CYCLE, START = S.DS.L1.B1;
+    FLATTEN;
+    ENDEDIT;
+    
+    USE, SEQUENCE = mynewhelhcb1;
+    
+    TWISS;
+	PLOT, HAXIS = S, VAXIS1=BETX,BETY , RANGE=S.DS.LIRN.B1/E.DS.RIRN.B1, COLOUR =100, NOVERSION=True;
+	PLOT, HAXIS = S, VAXIS1=ALFX,ALFY , RANGE=S.DS.LIRN.B1/E.DS.RIRN.B1, COLOUR =100, NOVERSION=True;
+	PLOT, HAXIS = S, VAXIS1=DX,DPX , RANGE=S.DS.LIRN.B1/E.DS.RIRN.B1, COLOUR =100, NOVERSION=True;
+	
+	SELECT, FLAG=twiss, clear;
+		
+	SEQEDIT, SEQUENCE = mynewhelhcb1;
+    FLATTEN;
+    CYCLE, START = IP1;
+    FLATTEN;
+    ENDEDIT;
+    
+		
+	USE, SEQUENCE = mynewhelhcb1;
+
+}
+
+
+// -----------------------------------------------------------
+// initialises all sextupole families for chroma matching
+init_sextupole_strength: macro = {
+
+	ksf1.a12b1 := ksf;
+	ksf2.a12b1 := ksf;
+
+	ksf1.a23b1 := ksf;
+	ksf2.a23b1 := ksf;
+
+	ksf1.a34b1 := ksf;
+	ksf2.a34b1 := ksf;
+
+	ksf1.a45b1 := ksf;
+	ksf2.a45b1 := ksf;
+
+	ksf1.a56b1 := ksf;
+	ksf2.a56b1 := ksf;
+	
+	ksf1.a67b1 := ksf;
+	ksf2.a67b1 := ksf;
+	
+	ksf1.a78b1 := ksf;
+	ksf2.a78b1 := ksf;
+	
+	ksf1.a81b1 := ksf;
+	ksf2.a81b1 := ksf;
+		
+		
+	ksd1.a12b1 := ksd;
+	ksd2.a12b1 := ksd;
+	
+	ksd1.a23b1 := ksd;
+	ksd2.a23b1 := ksd;
+	
+	ksd1.a34b1 := ksd;
+	ksd2.a34b1 := ksd;
+	
+	ksd1.a45b1 := ksd;
+	ksd2.a45b1 := ksd;
+	
+	ksd1.a56b1 := ksd;
+	ksd2.a56b1 := ksd;
+	
+	ksd1.a67b1 := ksd;
+	ksd2.a67b1 := ksd;
+	
+	ksd1.a78b1 := ksd;
+	ksd2.a78b1 := ksd;
+	
+	ksd1.a81b1 := ksd;
+	ksd2.a81b1 := ksd;
+
+}
+
+// -----------------------------------------------------------
+// match chromaticity 
+match_chroma(dqx,dqy): macro = {
+    USE, SEQUENCE = mynewhelhcb1;
+
+    EXEC, init_sextupole_strength;
+	
+	TWISS;
+	MATCH, SEQUENCE=mynewhelhcb1;
+
+	VARY, NAME = ksf , STEP=1E-6;
+	VARY, NAME = ksd , STEP=1E-6;
+	
+	GLOBAL, SEQUENCE = mynewhelhcb1, DQ1=dqx;
+	GLOBAL, SEQUENCE = mynewhelhcb1, DQ2=dqy;
+	LMDIF, CALLS=150, TOLERANCE=1e-12;
+	ENDMATCH;	
+	
+}
+
+// -----------------------------------------------------------
+// initialises all matching quadrupoles for tune matching
+init_mqt_strength: macro = {
+
+	kqtf.a12b1:=kqtf;
+	kqtf.a23b1:=kqtf;
+	kqtf.a34b1:=kqtf;
+	kqtf.a45b1:=kqtf;
+	kqtf.a56b1:=kqtf;
+	kqtf.a67b1:=kqtf;
+	kqtf.a78b1:=kqtf;
+	kqtf.a81b1:=kqtf;
+	
+	
+	kqtd.a12b1:=kqtd;
+	kqtd.a23b1:=kqtd;
+	kqtd.a34b1:=kqtd;
+	kqtd.a45b1:=kqtd;
+	kqtd.a56b1:=kqtd;
+	kqtd.a67b1:=kqtd;
+	kqtd.a78b1:=kqtd;
+	kqtd.a81b1:=kqtd;
+	
+	
+
+}
+
+// -----------------------------------------------------------
+// match tune using the tune quadrupoles , these need to be installed before using install_mqt macro 
+match_tune(qx,qy): macro = {
+
+    EXEC, init_mqt_strength;
+	
+	use,sequence=mynewhelhcb1;
+	
+	MATCH, SEQUENCE=mynewhelhcb1;
+		GLOBAL, q1=qx, q2=qy;
+		
+	 	
+	 	VARY, NAME=KQTF, STEP=1.0E-7; 
+	 	VARY, NAME=KQTD, STEP=1.0E-7; 
+	 	
+	 	
+		LMDIF,  CALLS=2000, TOLERANCE=1.0E-14;
+		JACOBIAN, CALLS=250, BISEC=5, TOLERANCE=1.0E-14;
+	ENDMATCH;
+	
+
+}
+
+
+// -----------------------------------------------------------
+// ???
+select(NIR,sec1,sec2,BIM): macro = {
+
+USE, SEQUENCE = mynewhelhcBIM, RANGE = s.cell.sec1.BIM / e.cell.sec1.BIM;
+SAVEBETA, LABEL = baux, PLACE= s.cell.sec1.BIM;
+TWISS;
+
+use,sequence=mynewhelhcBIM,range=e.cell.sec1.BIM/s.ds.lNIR.BIM;
+savebeta,label=birNIRBIM,place=s.ds.lNIR.BIM;
+twiss,beta0=baux;
+birNIRBIM->mux=0;birNIRBIM->muy=0;
+
+use,sequence=mynewhelhcBIM,range=s.cell.sec2.BIM/e.cell.sec2.BIM;
+savebeta,label=baux,place=s.cell.sec2.BIM;
+twiss;
+betxaux=baux->betx;betyaux=baux->bety;
+alfxaux=baux->alfx;alfyaux=baux->alfy;
+dxaux=baux->dx;dpxaux=baux->dpx;
+
+use,sequence=mynewhelhcBIM,range=e.ds.rNIR.BIM/s.cell.sec2.BIM;
+savebeta,label=eirNIRBIM,place=e.ds.rNIR.BIM;
+twiss,rmatrix,betx=1,bety=1;
+r11=table(twiss,s.cell.sec2.BIM,Re11);r12=table(twiss,s.cell.sec2.BIM,Re12);
+r21=table(twiss,s.cell.sec2.BIM,Re21);r22=table(twiss,s.cell.sec2.BIM,Re22);
+r33=table(twiss,s.cell.sec2.BIM,Re33);r34=table(twiss,s.cell.sec2.BIM,Re34);
+r43=table(twiss,s.cell.sec2.BIM,Re43);r44=table(twiss,s.cell.sec2.BIM,Re44);
+r16=table(twiss,s.cell.sec2.BIM,Re16);r26=table(twiss,s.cell.sec2.BIM,Re26);
+eirNIRBIM->betx=r22^2*betxaux+2.*r22*r12*alfxaux+r12^2*(1.+alfxaux^2)/betxaux;
+eirNIRBIM->alfx=r22*r21*betxaux+(r11*r22+r12*r21)*alfxaux+r12*r11*(1.+alfxaux^2)/betxaux;
+eirNIRBIM->bety=r44^2*betyaux+2.*r44*r34*alfyaux+r34^2*(1.+alfyaux^2)/betyaux;
+eirNIRBIM->alfy=r44*r43*betyaux+(r33*r44+r34*r43)*alfyaux+r34*r33*(1.+alfyaux^2)/betyaux;
+eirNIRBIM->dx=r22*(dxaux-r16)-r12*(dpxaux-r26);
+eirNIRBIM->dpx=-r21*(dxaux-r16)+r11*(dpxaux-r26);
+
+
+
+};
+
+// -----------------------------------------------------------
+// selects sector around the IR
+adjsector(NIR): macro = {
+
+if(NIR ==1) {sec1:=81;sec2:=12;};
+if(NIR ==2) {sec1:=12;sec2:=23;};
+if(NIR ==3) {sec1:=23;sec2:=34;};
+if(NIR ==4) {sec1:=34;sec2:=45;};
+if(NIR ==5) {sec1:=45;sec2:=56;};
+if(NIR ==6) {sec1:=56;sec2:=67;};
+if(NIR ==7) {sec1:=67;sec2:=78;};
+if(NIR ==8) {sec1:=78;sec2:=81;};
+
+};
+
+// -----------------------------------------------------------
+// beam command for HE-LHC with beam parameter
+mk_beam(NRJJ): macro = {
+
+NRJ=NRJJ;
+gamma_rel      := NRJ/pmass;
+emittance_norm := 2.5e-6;   // assuming same values as in hl-lhc for now, see https://indico.cern.ch/event/631877/contributions/2555049/attachments/1450061/2235548/aperture.pdf
+bunch_len=0.0755; 
+epsx:=emittance_norm /gamma_rel;
+epsy:=emittance_norm /gamma_rel;
+
+
+BEAM,  PARTICLE=proton, /*SEQUENCE=mynewhelhcb1,*/ ENERGY=NRJ, NPART=1.15E11, SIGE=4.5e-4*sqrt(450./NRJ), EX:=epsx, EY:=epsy, SIGT:=bunch_len;
+!Beam, particle=proton, sequence=lhcb2,      energy=NRJ,bv = -1, NPART=1.15E11,sige=4.5e-4*sqrt(450./NRJ),ex:=epsx,ey:=epsy,sigt:=bunch_len;
+}
+
+// -----------------------------------------------------------
+// create aperture files for Insertions
+mk_apir(nir,bim,NRJ,FULL) : macro = {
+exec,mk_beam(NRJ);
+
+if (apbbeat==0){ apbbeat=1.05;};
+if (halor==0){ halor=6;};  // new proposed parameter for n1 model in hl-lhc/ he-lhc
+if (halox==0){ halox=6;};
+if (haloy==0){ haloy=6;};
+
+if (COmax==0){ COmax=0.002;};
+if (dPmax==0){ dPmax=8.6e-4;};
+if (Dxpar==0){ Dxpar=0.14;};
+if (Dypar==0){ Dypar=0.14;};
+
+VALUE, NRJ, COmax, dPmax, emittance_norm, apbbeat, halor, halox, haloy;
+EXEC, adjsector(nir);
+EXEC,select(nir,$sec1,$sec2,bim);
+
+if(FULL==0)
+{USE, SEQUENCE = mynewhelhcBIM, RANGE = s.ds.lnir.bim/e.ds.rnir.bim;
+SELECT, FLAG = twiss,clear;
+SELECT, FLAG = twiss, COLUMN = name,s,l,angle,k1l,k2l,hkick,vkick,kick,betx,bety,dx,dy,x,y, RANGE = s.ds.lnir.bim/e.ds.rnir.bim;
+TWISS, BETA0=birnirbim, FILE=temp/twiss_irnirbim.tfs;
+};
+
+if(FULL==1)
+{USE, SEQUENCE = mynewhelhcBIM;
+SELECT, FLAG = twiss,clear;
+SELECT, FLAG = twiss, COLUMN = name,s,l,angle,k1l,k2l,hkick,vkick,kick,betx,bety,dx,dy,x,y, RANGE=s.ds.lnir.bim/e.ds.rnir.bim;
+TWISS , FILE=temp/twiss_irnirbim.tfs;
+};
+
+//system, "cp db5/aperture/offset.ip*b*.tfs  .";
+//system, "cp slhc/aperture/offset.ip*b*.tfs .";
+
+SELECT , FLAG = aperture,clear;
+SELECT , FLAG = aperture, COLUMN=name,s,betx,bety,dx,dy,x,y,n1,apertype,Rtol,xtol,ytol;
+APERTURE , RANGE=s.ds.lnir.bim/e.ds.rnir.bim, /*OFFSETTELEM=./offset.IPnir.bim.tfs,*/ cor=COmax, dp=dPmax, spec=SPECIF,interval=1.0,
+         //exn=emittance_norm,eyn=emittance_norm,
+         halo={6,halor,halox,haloy},bbeat=apbbeat, DPARX=Dxpar, DPARY=Dypar,
+         FILE=temp/ap_irnirbim.tfs;
+//system, "rm offset.ip*b*.tfs";
+
+//system,"slhc/aperture/check_aperture.py temp/ap_irnirbim.tfs";
+};
+
+// -----------------------------------------------------------
+// create aperture files for arc
+mk_aparc(NARC1,NARC2,BIM,NRJ) : macro = {
+EXEC, mk_beam(NRJ);
+
+
+if (apbbeat==0){ apbbeat=1.05;};
+if (halor==0){ halor=6;};  // new proposed parameter for n1 model in hl-lhc/ he-lhc
+if (halox==0){ halox=6;};
+if (haloy==0){ haloy=6;};
+
+if (COmax==0){ COmax=0.002;};
+if (dPmax==0){ dPmax=8.6e-4;};
+if (Dxpar==0){ Dxpar=0.14;};
+if (Dypar==0){ Dypar=0.14;};
+
+
+USE, SEQUENCE=mynewhelhcBIM;
+SELECT, FLAG=twiss, clear;
+SELECT, FLAG=twiss, COLUMN=name,s,l,angle,k1l,k2l,hkick,vkick,kick,betx,bety,dx,dy,x,y, RANGE=e.ds.rNARC1.BIM/s.ds.lNARC2.BIM;
+TWISS, FILE = temp/twiss_arcNARC1NARC2BIM.tfs;
+
+SELECT, FLAG = aperture,clear;
+SELECT, FLAG = aperture, COLUMN = name,s,betx,bety,dx,dy,x,y,n1,apertype,Rtol,xtol,ytol;
+APERTURE, RANGE = e.ds.rNARC1.BIM/s.ds.lNARC2.BIM, halo={6,halor,halox,haloy},bbeat=apbbeat, DPARX=Dxpar, DPARY=Dypar, cor=COmax, dp=dPmax, spec=SPECIF,interval=1.0,
+         file=temp/ap_arcNARC1NARC2BIM.tfs;
+
+//system,"slhc/aperture/check_aperture.py temp/ap_arcNARC1NARC2BIM.tfs";
+};
+
+
+// -----------------------------------------------------------
+// create aperture files for arcs and IPs
+mk_apall(NRJ,FULL): macro = {
+if(NRJ <6999.99) { COmax:=0.002; dPmax=8.6e-4; };
+if(NRJ >6999.99) { COmax:=0.002; dPmax=8.6e-4; };
+exec,mk_apir(1,b1,NRJ,FULL);
+exec,mk_apir(2,b1,NRJ,FULL);
+exec,mk_apir(3,b1,NRJ,FULL);
+exec,mk_apir(4,b1,NRJ,FULL);
+exec,mk_apir(5,b1,NRJ,FULL);
+exec,mk_apir(6,b1,NRJ,FULL);
+exec,mk_apir(7,b1,NRJ,FULL);
+exec,mk_apir(8,b1,NRJ,FULL);
+//exec,mk_apir(1,b2,NRJ,FULL);
+//exec,mk_apir(2,b2,NRJ,FULL);
+//exec,mk_apir(3,b2,NRJ,FULL);
+//exec,mk_apir(4,b2,NRJ,FULL);
+//exec,mk_apir(5,b2,NRJ,FULL);
+//exec,mk_apir(6,b2,NRJ,FULL);
+//exec,mk_apir(7,b2,NRJ,FULL);
+//exec,mk_apir(8,b2,NRJ,FULL);
+exec,mk_aparc(8,1,b1,NRJ);
+exec,mk_aparc(1,2,b1,NRJ);
+exec,mk_aparc(4,5,b1,NRJ);
+exec,mk_aparc(5,6,b1,NRJ);
+//exec,mk_aparc(8,1,b2,NRJ);
+//exec,mk_aparc(1,2,b2,NRJ);
+//exec,mk_aparc(4,5,b2,NRJ);
+//exec,mk_aparc(5,6,b2,NRJ);
+};
+
+// -----------------------------------------------------------
+// write K to file
+
+write_strengths(FNAME): macro={
+
+ASSIGN,ECHO=FNAME.STR, TRUNCATE;
+
+print, text="// FODO CELL";
+
+VALUE,kqf;
+VALUE,kqd;
+//VALUE, Angle;
+
+print, text="// IR1";
+
+VALUE, kqt13.l1b1         ;
+VALUE, kqt12.l1b1         ;
+VALUE, kqtl11.l1b1        ;
+VALUE, kq13.l1b1          ;
+VALUE, kq12.l1b1          ;
+
+VALUE, kq11.l1b1          ;
+VALUE, kq10.l1b1          ;
+VALUE, kq9.l1b1           ;
+VALUE, kq8.l1b1           ;
+VALUE, kq7.l1b1           ;
+VALUE, kq6.l1b1           ;
+VALUE, kq5.l1b1           ;
+VALUE, kq4.l1b1           ;
+
+VALUE, kqx3.l1            ;
+VALUE, kqx2b.l1           ;
+VALUE, kqx2a.l1           ;
+VALUE, kqx1.l1            ;
+
+VALUE, kqx1.r1            ;
+VALUE, kqx2a.r1           ;
+VALUE, kqx2b.r1           ;
+VALUE, kqx3.r1            ;
+
+VALUE, kq4.r1b1           ;
+VALUE, kq5.r1b1           ;
+VALUE, kq6.r1b1           ;
+VALUE, kq7.r1b1           ;
+VALUE, kq8.r1b1           ;
+VALUE, kq9.r1b1           ;
+VALUE, kq10.r1b1          ;
+VALUE, kq11.r1b1          ;
+
+VALUE, kq12.r1b1          ;
+VALUE, kq13.r1b1          ;
+VALUE, kqtl11.r1b1        ;
+VALUE, kqt12.r1b1         ;
+VALUE, kqt13.r1b1         ;
+
+print, text="// IR2";
+
+
+VALUE, kqt13.l2b1         ;
+VALUE, kqt12.l2b1         ;
+VALUE, kqtl11.l2b1        ;
+VALUE, kq13.l2b1          ;
+VALUE, kq12.l2b1          ;
+VALUE, kq11.l2b1          ;
+VALUE, kq10.l2b1          ;
+VALUE, kq9.l2b1           ;
+VALUE, kq8.l2b1           ;
+
+VALUE, kq7.l2b1           ;
+VALUE, kq6.l2b1           ;
+VALUE, kq5.l2b1           ;
+VALUE, kq4.l2b1           ;
+VALUE, kqx.l2             ;
+VALUE, kq4.r2b1           ;
+VALUE, kq5.r2b1           ;
+VALUE, kq6.r2b1           ;
+VALUE, kq7.r2b1           ;
+
+VALUE, kq8.r2b1           ;
+VALUE, kq9.r2b1           ;
+VALUE, kq10.r2b1          ;
+VALUE, kq11.r2b1          ;
+VALUE, kq12.r2b1          ;
+VALUE, kq13.r2b1          ;
+VALUE, kqtl11.r2b1        ;
+VALUE, kqt12.r2b1         ;
+VALUE, kqt13.r2b1         ;
+
+
+print, text="// IR3";
+
+
+
+VALUE, kq13.l3b1          ;
+VALUE, kq12.l3b1          ;
+VALUE, kq11.l3b1          ;
+VALUE, kq10.l3b1          ;
+VALUE, kq9.l3b1           ;
+VALUE, kq8.l3b1           ;
+
+
+VALUE, kqtl7.l3b1         ;
+VALUE, kq6.l3b1           ;
+
+VALUE, kq5.lr3            ;
+VALUE, kq4.lr3            ;
+
+VALUE, kq6.r3b1           ;
+VALUE, kqtl7.r3b1         ;
+
+VALUE, kqtl8.r3b1         ;
+VALUE, kqtl9.r3b1         ;
+VALUE, kq8.r3b1           ;
+VALUE, kq9.r3b1           ;
+VALUE, kq10.r3b1          ;
+VALUE, kq11.r3b1          ;
+VALUE, kq12.r3b1          ;
+VALUE, kq13.r3b1          ;
+
+
+VALUE, kql10.r3b1         ;
+VALUE, kql11.r3b1         ;
+VALUE, kqtl10.r3b1        ;
+VALUE, kqtl11.r3b1        ;
+VALUE, kqt12.r3b1         ;
+VALUE, kqt13.r3b1         ;
+
+
+print, text="// IR4";
+
+
+VALUE, kq13.l4b1          ;
+VALUE, kq12.l4b1          ;
+VALUE, kq11.l4b1          ;
+VALUE, kq10.l4b1          ;
+VALUE, kq9.l4b1           ;
+VALUE, kq8.l4b1           ;
+
+VALUE, kq7.l4b1           ;
+VALUE, kq6.l4b1           ;
+VALUE, kq5.l4b1           ;
+VALUE, kq4.l4b1           ;
+VALUE, kq4.r4b1           ;
+VALUE, kq5.r4b1           ;
+VALUE, kq6.r4b1           ;
+VALUE, kq7.r4b1           ;
+
+VALUE, kq8.r4b1           ;
+VALUE, kq9.r4b1           ;
+VALUE, kq10.r4b1          ;
+VALUE, kq11.r4b1          ;
+VALUE, kq12.r4b1          ;
+VALUE, kq13.r4b1          ;
+
+VALUE, kqtl11.r4b1        ;
+VALUE, kqt12.r4b1         ;
+VALUE, kqt13.r4b1         ;
+
+print, text="// IR5";
+
+VALUE, kqt13.l5b1         ;
+VALUE, kqt12.l5b1         ;
+VALUE, kqtl11.l5b1        ;
+VALUE, kq13.l5b1          ;
+VALUE, kq12.l5b1          ;
+
+VALUE, kq11.l5b1          ;
+VALUE, kq10.l5b1          ;
+VALUE, kq9.l5b1           ;
+VALUE, kq8.l5b1           ;
+VALUE, kq7.l5b1           ;
+VALUE, kq6.l5b1           ;
+VALUE, kq5.l5b1           ;
+VALUE, kq4.l5b1           ;
+
+VALUE, kqx3.l5            ;
+VALUE, kqx2b.l5           ;
+VALUE, kqx2a.l5           ;
+VALUE, kqx1.l5            ;
+
+VALUE, kqx1.l5            ;
+VALUE, kqx2a.l5           ;
+VALUE, kqx2b.l5           ;
+VALUE, kqx3.l5            ;
+
+VALUE, kq4.r5b1           ;
+VALUE, kq5.r5b1           ;
+VALUE, kq6.r5b1           ;
+VALUE, kq7.r5b1           ;
+VALUE, kq8.r5b1           ;
+VALUE, kq9.r5b1           ;
+VALUE, kq10.r5b1          ;
+VALUE, kq11.r5b1          ;
+
+VALUE, kq12.r5b1          ;
+VALUE, kq13.r5b1          ;
+VALUE, kqtl11.r5b1        ;
+VALUE, kqt12.r5b1         ;
+VALUE, kqt13.r5b1         ;
+
+
+
+print, text="// IR6";
+
+
+VALUE, kq13.l6b1          ;
+VALUE, kq12.l6b1          ;
+VALUE, kq11.l6b1          ;
+VALUE, kq10.l6b1          ;
+VALUE, kq9.l6b1           ;
+VALUE, kq8.l6b1           ;
+
+VALUE, kq5.l6b1           ;
+VALUE, kq4.l6b1           ;
+VALUE, kq4.r6b1           ;
+VALUE, kq5.r6b1           ;
+
+VALUE, kq8.r6b1           ;
+VALUE, kq9.r6b1           ;
+VALUE, kq10.r6b1          ;
+VALUE, kq11.r6b1          ;
+VALUE, kq12.r6b1          ;
+VALUE, kq13.r6b1          ;
+
+print, text="// IR7";
+
+VALUE, kq13.l7b1          ;
+VALUE, kq12.l7b1          ;
+VALUE, kq11.l7b1          ;
+VALUE, kq10.l7b1          ;
+VALUE, kq9.l7b1           ;
+VALUE, kq8.l7b1           ;
+
+VALUE, kqt13.l7b1         ;
+VALUE, kqt12.l7b1         ;
+VALUE, kqtl11.l7b1        ;
+VALUE, kqtl10.l7b1        ;
+VALUE, kqtl9.l7b1         ;
+VALUE, kqtl8.l7b1         ;
+
+VALUE, kqtl7.l7b1         ;
+VALUE, kq6.l7b1           ;
+
+VALUE, kq4.lr7            ;
+VALUE, kq5.lr7            ;
+
+VALUE, kq6.r7b1           ;
+VALUE, kqtl7.r7b1         ;
+
+VALUE, kqtl8.r7b1         ;
+VALUE, kqtl9.r7b1         ;
+VALUE, kqtl10.r7b1        ;
+VALUE, kqtl11.r7b1        ;
+VALUE, kqt12.r7b1         ;
+VALUE, kqt13.r7b1         ;
+
+VALUE, kq8.r7b1           ;
+VALUE, kq9.r7b1           ;
+VALUE, kq10.r7b1          ;
+VALUE, kq11.r7b1          ;
+VALUE, kq12.r7b1          ;
+VALUE, kq13.r7b1          ;
+
+
+
+print, text="// IR8";
+
+
+VALUE, kq13.l8b1          ;
+VALUE, kq12.l8b1          ;
+VALUE, kq11.l8b1          ;
+
+VALUE, kqt13.l8b1         ;
+VALUE, kqt12.l8b1         ;
+VALUE, kqtl11.l8b1        ;
+VALUE, kq10.l8b1          ;
+VALUE, kq9.l8b1           ;
+VALUE, kq8.l8b1           ;
+
+VALUE, kq7.l8b1           ;
+VALUE, kq6.l8b1           ;
+VALUE, kq5.l8b1           ;
+VALUE, kq4.l8b1           ;
+VALUE, kqx.l8             ;
+VALUE, kq4.r8b1           ;
+VALUE, kq5.r8b1           ;
+VALUE, kq6.r8b1           ;
+VALUE, kq7.r8b1           ;
+
+VALUE, kq8.r8b1           ;
+VALUE, kq9.r8b1           ;
+VALUE, kq10.r8b1          ;
+VALUE, kqtl11.r8b1        ;
+VALUE, kqt12.r8b1         ;
+VALUE, kqt13.r8b1         ;
+
+VALUE, kq11.r8b1          ;
+VALUE, kq12.r8b1          ;
+VALUE, kq13.r8b1          ;
+
+
+
+print, text="// Arc Sextupoles";
+
+VALUE, ksf1.a12b1;
+VALUE, ksf2.a12b1;
+VALUE, ksf1.a23b1;
+VALUE, ksf2.a23b1;
+VALUE, ksf1.a34b1;
+VALUE, ksf2.a34b1;
+VALUE, ksf1.a45b1;
+VALUE, ksf2.a45b1;
+VALUE, ksf1.a56b1;
+VALUE, ksf2.a56b1;
+VALUE, ksf1.a67b1;
+VALUE, ksf2.a67b1;
+VALUE, ksf1.a78b1;
+VALUE, ksf2.a78b1;
+VALUE, ksf1.a81b1;
+VALUE, ksf2.a81b1;
+VALUE, ksd1.a12b1;
+VALUE, ksd2.a12b1;
+VALUE, ksd1.a23b1;
+VALUE, ksd2.a23b1;
+VALUE, ksd1.a34b1;
+VALUE, ksd2.a34b1;
+VALUE, ksd1.a45b1;
+VALUE, ksd2.a45b1;
+VALUE, ksd1.a56b1;
+VALUE, ksd2.a56b1;
+VALUE, ksd1.a67b1;
+VALUE, ksd2.a67b1;
+VALUE, ksd1.a78b1;
+VALUE, ksd2.a78b1;
+VALUE, ksd1.a81b1;
+VALUE, ksd2.a81b1;
+
+print, text="// ARC Tune Quadrupoles";
+
+VALUE, kqtf.a12b1;
+VALUE, kqtf.a23b1;
+VALUE, kqtf.a34b1;
+VALUE, kqtf.a45b1;
+VALUE, kqtf.a56b1;
+VALUE, kqtf.a67b1;
+VALUE, kqtf.a78b1;
+VALUE, kqtf.a81b1;	
+VALUE, kqtd.a12b1;
+VALUE, kqtd.a23b1;
+VALUE, kqtd.a34b1;
+VALUE, kqtd.a45b1;
+VALUE, kqtd.a56b1;
+VALUE, kqtd.a67b1;
+VALUE, kqtd.a78b1;
+VALUE, kqtd.a81b1;
+
+
+ASSIGN,ECHO=TERMINAL;
+}
+

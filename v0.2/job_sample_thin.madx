@@ -1,0 +1,23 @@
+
+
+call, file="./toolkit/macro.madx";
+
+
+call, file="./helhc_18x90_thin.seq";
+call, file="./optics/opt_inj_thin.str";
+
+EXEC, mk_beam(450);
+
+USE, SEQUENCE = mynewhelhcb1;
+
+twiss;
+plot , haxis=s, vaxis1=betx,bety, vaxis2=dx, colour=100, noversion=True;
+
+call, file="./optics/opt_coll_thin.str";
+
+EXEC, mk_beam(13500);
+
+USE, SEQUENCE = mynewhelhcb1;
+
+twiss;
+plot , haxis=s, vaxis1=betx,bety, vaxis2=dx, colour=100, noversion=True;

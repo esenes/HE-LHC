@@ -1,0 +1,25 @@
+call, file="./toolkit/macro.madx";
+
+call, file="./helhc_18x90.seq";
+call, file="./optics/opt_inj.str";
+call, file="./aperture/aperture.b1.madx";
+call, file="./aperture/aperture.b1.tol.madx";
+
+EXEC, mk_beam(450);
+
+USE, SEQUENCE = mynewhelhcb1;
+
+twiss;
+plot , haxis=s, vaxis1=betx,bety, vaxis2=dx, colour=100, noversion=True;
+
+EXEC, mk_apall(450,1);
+
+call, file="./optics/opt_coll.str";
+
+EXEC, mk_beam(13500);
+
+USE, SEQUENCE = mynewhelhcb1;
+
+twiss;
+plot , haxis=s, vaxis1=betx,bety, vaxis2=dx, colour=100, noversion=True;
+EXEC, mk_apall(13500,1);

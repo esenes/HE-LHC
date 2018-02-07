@@ -1,0 +1,72 @@
+/***********************************************************************************/
+/*                       HE-LHC  ARC CELL SEQUENCE                                 */
+/***********************************************************************************/
+
+offset = l.MQ;
+
+mySeq: SEQUENCE, REFER=CENTER, L= offset + 137.2310055 ;
+  MQ.11R1.B1:MQ,                    at = offset + 0.0 ;
+  MS.11R1.B1:MS,                    at = offset + 1.93825 ;
+  MCBH.11R1.B1:MCBH,                at = offset + 2.8 ;
+  MCO.A12R1.B1:MCO,                 at = offset + 4.4175 ;
+  MCD.A12R1.B1:MCD,                 at = offset + 4.419 ;
+  MB.A12R1.B1:MB,                   at = offset + 11.42375035 ;
+  MCS.A12R1.B1:MCS,                 at = offset + 18.64300069 ;
+  MB.B12R1.B1:MB,                   at = offset + 26.92425104 ;
+  MCS.B12R1.B1:MCS,                 at = offset + 34.14350138 ;
+  MCO.B12R1.B1:MCO,                 at = offset + 35.41850138 ;
+  MCD.B12R1.B1:MCD,                 at = offset + 35.42000138 ;
+  MB.C12R1.B1:MB,                   at = offset + 42.42475173 ;
+  MCS.C12R1.B1:MCS,                 at = offset + 49.64400207 ;
+  MB.D12R1.B1:MB,                   at = offset + 57.92525242 ;
+  MCS.D12R1.B1:MCS,                 at = offset + 65.14450277 ;
+  MQT.12R1.B1:MQT,                  at = offset + 66.54550277 ;
+  MQ.12R1.B1:MQ,                    at = offset + 68.61550277 ;
+  MS.12R1.B1:MS,                    at = offset + 70.55375277 ;
+  MCBV.12R1.B1:MCBV,                at = offset + 71.41550277 ;
+  MB.A13R1.B1:MB,                   at = offset + 80.03925311 ;
+  MCS.A13R1.B1:MCS,                 at = offset + 87.25850346 ;
+  MCO.13R1.B1:MCO,                  at = offset + 88.53350346 ;
+  MCD.13R1.B1:MCD,                  at = offset + 88.53500346 ;
+  MB.B13R1.B1:MB,                   at = offset + 95.5397538 ;
+  MCS.B13R1.B1:MCS,                 at = offset + 102.7590041 ;
+  MB.C13R1.B1:MB,                   at = offset + 111.0402545 ;
+  MCS.C13R1.B1:MCS,                 at = offset + 118.2595048 ;
+  MB.D13R1.B1:MB,                   at = offset + 126.5407552 ;
+  MCS.D13R1.B1:MCS,                 at = offset + 133.7600055 ;
+  MQT.13R1.B1:MQT,                  at = offset + 135.1610055 ;
+ENDSEQUENCE;
+
+/***********************************************************************************/
+/*                       MAGNET-CONSTANT LHC SEQUENCE %B1                           */
+/************************************************************************************/
+MQ.11R1.B1,                    K1 := kq11.r1b1, polarity=+1;
+MS.11R1.B1,                   K2 := ksf1.a12b1, polarity=+1;
+MCBH.11R1.B1,                  KICK := acbch11.r1b1, polarity=+1;
+MCO.A12R1.B1,                  KNL := {0, 0, 0, kco.a12b1*l.MCO, 0}, polarity=+1;
+MCD.A12R1.B1,                  KNL := {0, 0, 0, 0,kcd.a12b1*l.MCD}, polarity=+1;
+MB.A12R1.B1,                  ANGLE := ab.a12, K0 := kb.a12, polarity=+1;
+MCS.A12R1.B1,                 K2 := kcs.a12b1, polarity=+1;
+MB.B12R1.B1,                   ANGLE := ab.a12, K0 := kb.a12, polarity=+1;
+MCS.B12R1.B1,                 K2 := kcs.a12b1, polarity=+1;
+MCO.B12R1.B1,                   KNL := {0, 0, 0, kco.a12b1*l.MCO, 0}, polarity=+1;
+MCD.B12R1.B1,                  KNL := {0, 0, 0, 0,kcd.a12b1*l.MCD}, polarity=+1;
+MB.C12R1.B1,                   ANGLE := ab.a12, K0 := kb.a12, polarity=+1;
+MCS.C12R1.B1,                K2 := kcs.a12b1, polarity=+1;
+MB.D12R1.B1,                   ANGLE := ab.a12, K0 := kb.a12, polarity=+1;
+MCS.D12R1.B1,                 K2 := kcs.a12b1, polarity=+1;
+MQT.12R1.B1,                      K1 := kqt12.r1b1, polarity=+1;
+MQ.12R1.B1,                     K1 := kq12.r1b1, polarity=+1;
+MS.12R1.B1,                   K2 := ksd1.a12b1, polarity=+1;
+MCBV.12R1.B1,                   KICK := acbch12.r1b1, polarity=+1;
+MB.A13R1.B1,                  ANGLE := ab.a12, K0 := kb.a12, polarity=+1;
+MCS.A13R1.B1,                K2 := kcs.a12b1, polarity=+1;
+MCO.13R1.B1,                   KNL := {0, 0, 0, kco.a12b1*l.MCO, 0}, polarity=+1;
+MCD.13R1.B1,                   KNL := {0, 0, 0, 0,kcd.a12b1*l.MCD}, polarity=+1;
+MB.B13R1.B1,                  ANGLE := ab.a12, K0 := kb.a12, polarity=+1;
+MCS.B13R1.B1,                K2 := kcs.a12b1, polarity=+1;
+MB.C13R1.B1,                 ANGLE := ab.a12, K0 := kb.a12, polarity=+1;
+MCS.C13R1.B1,                K2 := kcs.a12b1, polarity=+1;
+MB.D13R1.B1,                 ANGLE := ab.a12, K0 := kb.a12, polarity=+1;
+MCS.D13R1.B1,                K2 := kcs.a12b1, polarity=+1;
+MQT.13R1.B1,                     K1 := kqt13.r1b1, polarity=+1;

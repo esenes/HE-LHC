@@ -1,0 +1,6 @@
+QDH,          APERTYPE="./aperture/FCC_BS_AP.txt";
+QFH,          APERTYPE="./aperture/FCC_BS_AP.txt";
+MS,          APERTYPE="./aperture/FCC_BS_AP.txt";
+MQTF,          APERTYPE="./aperture/FCC_BS_AP.txt";
+MQTD,          APERTYPE="./aperture/FCC_BS_AP.txt";
+B,          APERTYPE="./aperture/FCC_BS_AP.txt";

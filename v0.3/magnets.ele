@@ -1,0 +1,31 @@
+// -----------------------------------------------------------
+/*
+    Magnet definition file
+    Eugenio Senes
+    Created 06.02.2018
+*/
+//------------------------------------------------------------
+
+HCORRECTOR: HKICKER;
+VCORRECTOR: VKICKER;
+
+//--------------------- HCORRECTOR     ---------------------------------------------
+MCBH : HCORRECTOR, L := l.MCBH, Kmax := Kmax_MCBH, Kmin := Kmin_MCBH, Calib := Kmax_MCBH / Imax_MCBH;
+
+//---------------------- MULTIPOLE      ---------------------------------------------
+MCD : MULTIPOLE, Lrad := l.MCD, Kmax := Kmax_MCD, Kmin := Kmin_MCD, Calib := Kmax_MCD / Imax_MCD;
+MCO : MULTIPOLE, Lrad := l.MCO, Kmax := Kmax_MCO, Kmin := Kmin_MCO, Calib := Kmax_MCO / Imax_MCO;
+
+//---------------------- QUADRUPOLE     ---------------------------------------------
+MQ : QUADRUPOLE, L := l.MQ, Kmax := Kmax_MQ, Kmin := Kmin_MQ, Calib := Kmax_MQ / Imax_MQ;
+MQT : QUADRUPOLE, L := l.MQT, Kmax := Kmax_MQT, Kmin := Kmin_MQT, Calib := Kmax_MQT / Imax_MQT;
+
+//---------------------- SBEND          ---------------------------------------------
+MB : SBEND, L := l.MB, Kmax := Kmax_MB, Kmin := Kmin_MB, Calib := Kmax_MB / Imax_MB;
+
+//---------------------- SEXTUPOLE      ---------------------------------------------
+MCS : SEXTUPOLE, L := l.MCS, Kmax := Kmax_MCS, Kmin := Kmin_MCS, Calib := Kmax_MCS / Imax_MCS;
+MS : SEXTUPOLE, L := l.MS, Kmax := Kmax_MS, Kmin := Kmin_MS, Calib := Kmax_MS / Imax_MS;
+
+//---------------------- VCORRECTOR     ---------------------------------------------
+MCBV : VCORRECTOR, L := l.MCBV, Kmax := Kmax_MCBV, Kmin := Kmin_MCBV, Calib := Kmax_MCBV / Imax_MCBV;
