@@ -24,7 +24,7 @@ BEAM, PARTICLE=proton, ENERGY=nrj,EX=emittance_norm/gamma_rel, NPART=1.15E11, SI
 // -----------------------------------------------------------
 /*  Initial twiss                                           */
 //------------------------------------------------------------
-USE, SEQUENCE = arcCell;
+USE, SEQUENCE = arcCell1;
 TWISS, TABLE=twiss_tab, FILE="twiss0.out";
 PLOT , TABLE=twiss_tab, HAXIS=s, VAXIS1=betx,bety, VAXIS2=dx, colour=100, NOVERSION=true, TITLE="Phi=90 deg";
 
@@ -44,15 +44,14 @@ REAL CONST dPmax=8.6e-4;
 REAL CONST Dxpar=0.14;
 REAL CONST Dypar=0.14;
 
-USE, SEQUENCE = arcCell;
 SELECT, FLAG=twiss, clear;
 SELECT, FLAG=twiss, COLUMN=name,s,l,angle,k1l,k2l,hkick,vkick,kick,betx,bety,dx,dy,x,y;
-TWISS, FILE = temp/twiss_arcNARC1NARC2BIM.tfs;
+TWISS, FILE = "twiss0_ap.out";
 
 SELECT, FLAG = aperture,clear;
 SELECT, FLAG = aperture, COLUMN = name,s,betx,bety,dx,dy,x,y,n1,apertype,Rtol,xtol,ytol;
 APERTURE, HALO={6,halor,halox,haloy},BBEAT=apbbeat, DPARX=Dxpar, DPARY=Dypar, COR=COmax, DP=dPmax, SPEC=SPECIF,INTERVAL=1.0,
-         FILE=temp/ap_arcNARC1NARC2BIM.tfs;
+         FILE="twiss0_ap.out";
 
 plot, TABLE=aperture, haxis=s, vmin=0, vmax=300,20, vaxis1=betx,bety, vaxis2=n1, colour=100, NOVERSION=true, TITLE="Phi=90 deg";
 
@@ -61,7 +60,7 @@ plot, TABLE=aperture, haxis=s, vmin=0, vmax=300,20, vaxis1=betx,bety, vaxis2=n1,
 // -----------------------------------------------------------
 /*  Match the phase advance                                 */
 //------------------------------------------------------------
-MATCH, SEQUENCE=arcCell;
+MATCH, SEQUENCE=arcCell2;
   GLOBAL, SEQUENCE=arcCell, Q1=0.1667;
   GLOBAL, SEQUENCE=arcCell, Q2=0.2049339333;
   VARY, name=kq12.r1b1, STEP=1.0E-5;
@@ -88,18 +87,16 @@ REAL CONST dPmax=8.6e-4;
 REAL CONST Dxpar=0.14;
 REAL CONST Dypar=0.14;
 
-USE, SEQUENCE = arcCell;
 SELECT, FLAG=twiss, clear;
 SELECT, FLAG=twiss, COLUMN=name,s,l,angle,k1l,k2l,hkick,vkick,kick,betx,bety,dx,dy,x,y;
-TWISS, FILE = temp/twiss_arcNARC1NARC2BIM.tfs;
+TWISS, FILE ="twiss1_ap.out";
 
 SELECT, FLAG = aperture,clear;
 SELECT, FLAG = aperture, COLUMN = name,s,betx,bety,dx,dy,x,y,n1,apertype,Rtol,xtol,ytol;
 APERTURE, HALO={6,halor,halox,haloy},BBEAT=apbbeat, DPARX=Dxpar, DPARY=Dypar, COR=COmax, DP=dPmax, SPEC=SPECIF,INTERVAL=1.0,
-         FILE=temp/ap_arcNARC1NARC2BIM.tfs;
+         FILE="twiss1_ap.out";
 
 plot, TABLE=aperture, haxis=s, vmin=0, vmax=300,20, vaxis1=betx,bety, vaxis2=n1, colour=100, NOVERSION=true, TITLE="Phi=60 deg";
-
 
 
 STOP;
